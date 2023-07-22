@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 public class UsuarioPastaDTO {
-    private Long idUsuario;
+    private UUID idUsuario;
 
-    private Long idPasta;
+    private UUID idPasta;
 }
