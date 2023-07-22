@@ -22,6 +22,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/arquivos")
@@ -41,12 +42,13 @@ public class ArquivoController {
 
 
     @PostMapping(value = "/upload/{id}")
-    private void uploadFiles(@RequestParam("file") MultipartFile file,@PathVariable Long id){
+    private ResponseEntity<?> uploadFiles(@RequestParam("file") MultipartFile file,@PathVariable UUID id){
         String nomePasta = "MeusArquivos";
         String caminhoDocumentos = System.getProperty("user.home") + "\\Documents";
         Path pastaDocumentos = Paths.get(caminhoDocumentos, nomePasta);
 
-        Optional<Pasta> pastaFound = pastaRepository.findById(id);
+        Pasta pastaFound = pastaRepository.findById(id).get();
+        System.out.println("Pasta encontrada"+pastaFound);
 
         try{
             if(!file.isEmpty()){
@@ -59,24 +61,30 @@ public class ArquivoController {
 //---CASO-DER-ALGUM-PROBLEMA-AO-SALVAR-DADOS,-DESCOMENTE-AQUI-E-FAÇA-O-DEBUG=-===
                 System.out.println(file.getName());                         //  |||
                 System.out.println(dataAtual);                              //  |||
-                System.out.println(pastaFound.get().getNome());             //  |||
+               System.out.println(pastaFound);             //  |||
                 System.out.println(arquivoPath.toString());                 //|||
-                System.out.println();                                       //|||
 //===-===-===-===-===-===-===-===-===-===-===-===-===-===-===-===-===-===-===-===
 
                 //ANALISANDO OS DADOS ANTES DE INSTANCIAR A CLASSE
 
                 Arquivo arquivo = new Arquivo();
+
+                arquivo.setId_arquivo(UUID.randomUUID());
                 arquivo.setName(file.getName());
                 arquivo.setTipo(identificarTipoArquivo(file.getOriginalFilename()));
                 arquivo.setData_upload(dataAtual);
-                arquivo.setPasta(pastaFound.get());
                 arquivo.setCaminhoArquivo(arquivoPath.toString());
+                arquivo.setPasta(pastaFound);
 
-               // arquivoRepository.save(arquivo);
+                //pastaFound.getArquivos().add(arquivo);
+                System.out.println(arquivo);                                       //|||
+               // pastaRepository.save(pastaFound);
+              return ResponseEntity.ok(arquivoRepository.save(arquivo));
             }
+              return ResponseEntity.notFound().build();
         }catch (IOException e){
             e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
