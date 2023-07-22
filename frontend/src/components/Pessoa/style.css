@@ -1,0 +1,9 @@
+.pessoa {
+  margin-top: 3px;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1em;
+  border-bottom: 1px solid #e3eaf1;
+}

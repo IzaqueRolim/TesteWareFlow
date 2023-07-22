@@ -3,10 +3,6 @@
   color: #ffffff;
 }
 
-h1 {
-  margin-bottom: 50px;
-}
-
 .card_file {
   display: flex;
   justify-content: center;
@@ -41,25 +37,21 @@ h1 {
 
 .home {
   justify-content: space-between;
+  align-items: center;
   display: flex;
   width: 100vw;
-  height: auto;
+  height: 90vh;
 }
 
 .ghost {
   height: 100px;
 }
 .people {
-  margin-right: 2em;
+  margin-right: 3em;
   padding: 1em;
-  background-color: #39929c;
 }
 .lista_pessoas {
-  background-color: antiquewhite;
+  margin-top: 1em;
   height: 100%;
   width: 100%;
-}
-
-.lista_pessoas {
-  background-color: aqua;
 }

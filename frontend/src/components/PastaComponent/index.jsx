@@ -1,9 +1,11 @@
-import iconPasta from '../../assets/iconPasta.png'
-import './style.css'
+import iconPasta from "../../assets/iconPasta.png";
+import "./style.css";
 
-export const PastaComponent = (props) =>{
-    return<div className='divPasta'>
-        <img src={iconPasta}/>
-        <span>{props.nomePasta}</span>
+export const PastaComponent = (props) => {
+  return (
+    <div className="divPasta">
+      <img src={iconPasta} />
+      <span>{props.nomePasta}</span>
     </div>
-}
+  );
+};

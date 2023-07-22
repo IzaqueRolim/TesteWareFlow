@@ -1,14 +1,17 @@
 import { Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Foto } from "./Foto";
+import { Pessoa } from "./Pessoa";
 
 export const PeopleAcess = () => {
   return (
     <div className="people">
-      <Typography>Pessoas com acesso</Typography>
+      <Typography variant="h6">Pessoas com acesso</Typography>
       <div className="lista_pessoas">
-        <Foto>Raquel</Foto>
-        <p>Raquel Silva</p>
+        <Pessoa nome={"Raquel Silva"} />
+        <Pessoa nome={"Raquel Silva"} />
+        <Pessoa nome={"Raquel Silva"} />
+        <Pessoa nome={"Raquel Silva"} />
       </div>
     </div>
   );

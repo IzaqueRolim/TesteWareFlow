@@ -1,15 +1,16 @@
-.botaoAdicionar{
-    width: 200px;
-    height: 200px;
-    background-color: transparent;
-    border: 3px solid black;
-    color: black;
-    font-size: 100px;
+.botaoAdicionar {
+  width: 180px;
+  height: 130px;
+  border-radius: 25px;
+  background-color: transparent;
+  border: 3px solid black;
+  color: black;
+  font-size: 100px;
 }
-.botaoAdicionar:hover{
-    cursor: pointer;
-    background-color: black;
-    border: none;
-    color: white;
-    transition: all 0.4s;
+.botaoAdicionar:hover {
+  cursor: pointer;
+  background-color: black;
+  border: none;
+  color: white;
+  transition: all 1s;
 }

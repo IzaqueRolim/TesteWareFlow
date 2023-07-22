@@ -7,13 +7,15 @@ import "primeicons/primeicons.css";
 import { FileUploadDemo } from "./components/FileUpload";
 import { Home } from "./components/Home";
 import { Auth } from "./components/Auth";
+import { ListaPasta } from "./components/ListaPasta";
+import { Header } from "./components/Header";
 function App() {
   return (
     <div className="App">
-      <div className="conteiner">
-        <Home />
-        {/* <Auth /> */}
-      </div>
+      <Header nomeUsuario={"Izaque Rola"} />
+      {/* <Home /> */}
+      {/* <Auth /> */}
+      <ListaPasta />
     </div>
   );
 }
