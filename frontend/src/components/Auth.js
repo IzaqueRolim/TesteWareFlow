@@ -5,19 +5,19 @@ import "../styles/custompanel.css";
 import { FormsLogin } from "./FormsLogin";
 import { FormsCadastro } from "./FormsCadastro";
 export const Auth = () => {
-  const [checked1, setChecked1] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   return (
     <div className="login">
-      <div>
-        <div className="card">
+      <div className="card">
+        <div>
           <InputSwitch
-            checked={checked1}
-            onChange={(e) => setChecked1(e.value)}
+            checked={checked}
+            onChange={(e) => setChecked(e.value)}
           />
         </div>
+        {checked ? <FormsCadastro /> : <FormsLogin />}
       </div>
-      {checked1 ? <FormsCadastro /> : <FormsLogin />}
     </div>
   );
 };

@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
-import { Checkbox } from "primereact/checkbox";
-import { Box, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 import { Button } from "primereact/button";
 
 export const FormsCadastro = () => {
-  const [value3, setValue3] = useState("");
-  const [checked, setChecked] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleClickRegister = () => {
+    console.log(
+      "Funcao handleClickRegister (acessar a rota de cadastrar user)"
+    );
+    console.log("Username: " + userName);
+    console.log("Email: " + email);
+    console.log("Password: " + password);
+
+    setUserName("");
+    setEmail("");
+    setPassword("");
+  };
   return (
     <Paper
       elevation={3}
@@ -24,8 +37,8 @@ export const FormsCadastro = () => {
         <span className="p-input-icon-left">
           <i className="pi pi-user" />
           <InputText
-            value={value3}
-            onChange={(e) => setValue3(e.target.value)}
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
             placeholder="Username"
           />
         </span>
@@ -34,8 +47,8 @@ export const FormsCadastro = () => {
         <span className="p-input-icon-left">
           <i className="pi pi-shield" />
           <InputText
-            value={value3}
-            onChange={(e) => setValue3(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
           />
         </span>
@@ -44,14 +57,19 @@ export const FormsCadastro = () => {
         <span className="p-input-icon-left">
           <i className="pi pi-shield" />
           <InputText
-            value={value3}
-            onChange={(e) => setValue3(e.target.value)}
+            value={password}
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
           />
         </span>
       </div>
 
-      <Button label="Cadastrar" aria-label="Submit" />
+      <Button
+        label="Cadastrar"
+        aria-label="Submit"
+        onClick={handleClickRegister}
+      />
     </Paper>
   );
 };

@@ -6,7 +6,22 @@ import { Button } from "primereact/button";
 
 export const FormsLogin = () => {
   const [value3, setValue3] = useState("");
+
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
+
+  const handleClickLogin = () => {
+    console.log("Funcao handleClickLogin (acessar a rota de login)");
+    console.log("Username: " + userName);
+    console.log("Password: " + password);
+    console.log("Remember Me: " + checked);
+
+    setUserName("");
+    setPassword("");
+    setChecked("");
+  };
+
   return (
     <Paper
       elevation={3}
@@ -15,17 +30,17 @@ export const FormsLogin = () => {
         width: "25vw",
         display: "flex",
         flexDirection: "column",
-        gap: 3,
         alignItems: "center",
         justifyContent: "center",
+        gap: 3,
       }}
     >
       <div>
         <span className="p-input-icon-left">
           <i className="pi pi-user" />
           <InputText
-            value={value3}
-            onChange={(e) => setValue3(e.target.value)}
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
             placeholder="Username"
           />
         </span>
@@ -34,8 +49,9 @@ export const FormsLogin = () => {
         <span className="p-input-icon-left">
           <i className="pi pi-shield" />
           <InputText
-            value={value3}
-            onChange={(e) => setValue3(e.target.value)}
+            value={password}
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
           />
         </span>
@@ -49,7 +65,7 @@ export const FormsLogin = () => {
         />
         <label htmlFor="binary">Remember Me</label>
       </div>
-      <Button label="Entrar" aria-label="Submit" />
+      <Button label="Entrar" aria-label="Submit" onClick={handleClickLogin} />
     </Paper>
   );
 };
