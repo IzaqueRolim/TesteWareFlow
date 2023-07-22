@@ -52,4 +52,14 @@ h1 {
 .people {
   margin-right: 2em;
   padding: 1em;
+  background-color: #39929c;
+}
+.lista_pessoas {
+  background-color: antiquewhite;
+  height: 100%;
+  width: 100%;
+}
+
+.lista_pessoas {
+  background-color: aqua;
 }
