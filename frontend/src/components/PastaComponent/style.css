@@ -1,0 +1,26 @@
+
+.divPasta{
+    background-color: #f1f2f7;
+    transition: background-color 0.3s ease;
+    border-radius: 15px;
+    height: 190px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: black;
+    font-size: 20px;
+}
+
+.divPasta>img{
+    
+}
+.divPasta:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: all 0.2s;
+}
+.divPasta:not(:hover){
+    transform: scale(1);
+    transition: all 0.5s;
+}

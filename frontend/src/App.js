@@ -14,8 +14,7 @@ import { useState } from 'react';
 import { FileUploadDemo } from './components/FileUpload';
 import { Input } from '@mui/material';
 import { Auth } from './components/Auth';
- 
-
+import { ListaPasta } from './components/ListaPasta';
 
 function App() {
   const [state, setState] = useState();
@@ -32,9 +31,10 @@ function App() {
 <FileUploadDemo/>
 {/* <Auth/> */}
     </div>
-
+      <ListaPasta/>
  
     </div>
+    
   );
 }
 
