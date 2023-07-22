@@ -18,7 +18,7 @@ export const FileUploadDemo = () => {
   return (
     <div className="card_file">
       <div className="file_upload">
-        <h1>Carregue seu arquivo</h1>
+        <h1>Upload your file</h1>
         <FileUpload
           name="demo[]"
           url="https://primefaces.org/primereact/showcase/upload.php"
@@ -28,7 +28,7 @@ export const FileUploadDemo = () => {
           maxFileSize={1000000}
           emptyTemplate={
             <div className="ghost">
-              <p className="m-0">Arraste e solte seus arquivos aqui.</p>
+              <p className="m-0">Drag and drop files to here to upload.</p>
             </div>
           }
         />
