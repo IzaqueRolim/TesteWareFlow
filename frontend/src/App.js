@@ -6,13 +6,13 @@ import "primeicons/primeicons.css";
 
 import { FileUploadDemo } from "./components/FileUpload";
 import { Home } from "./components/Home";
-import { Auth } from "./components/Auth";
+
 function App() {
   return (
     <div className="App">
       <div className="conteiner">
         <Home />
-        {/* <Auth /> */}
+        {/* <Auth/> */}
       </div>
     </div>
   );
