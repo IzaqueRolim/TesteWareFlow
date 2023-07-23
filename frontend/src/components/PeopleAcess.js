@@ -9,9 +9,9 @@ export const PeopleAcess = () => {
       <Typography variant="h6">Pessoas com acesso</Typography>
       <div className="lista_pessoas">
         <Pessoa nome={"Raquel Silva"} />
-        <Pessoa nome={"Raquel Silva"} />
-        <Pessoa nome={"Raquel Silva"} />
-        <Pessoa nome={"Raquel Silva"} />
+        <Pessoa nome={"Izaque Rolim"} />
+        <Pessoa nome={"Erika Silva"} />
+        <Pessoa nome={"Kezia Suely"} />
       </div>
     </div>
   );

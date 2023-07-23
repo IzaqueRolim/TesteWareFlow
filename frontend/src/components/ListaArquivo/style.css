@@ -1,0 +1,24 @@
+.listaArquivo {
+    width: 75%;
+    max-height: 80vh;
+    margin-left: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  
+    align-items: center;
+    margin-top: 30px;
+    overflow-y: auto;
+  }
+  ::-webkit-scrollbar {
+    width: 5px; 
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #c9c5c5;
+    border-radius: 10px; 
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1; 
+  }

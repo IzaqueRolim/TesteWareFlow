@@ -1,0 +1,28 @@
+.divArquivo {
+    background-color: #f1f2f7;
+    transition: background-color 0.3s ease;
+    border-radius: 15px;
+    height: 180px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: black;
+    font-size: 20px;
+  }
+  
+  .divArquivo > img {
+    height: 65%;
+    width: 85%;
+  }
+  .divArquivo:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: all 0.4s;
+  }
+  .divArquivo:not(:hover) {
+    transform: scale(1);
+    transition: all 0.5s;
+  }
+  

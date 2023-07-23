@@ -26,6 +26,8 @@ export const FileUploadDemo = () => {
           multiple
           accept="image/*"
           maxFileSize={1000000}
+          chooseLabel="Escolher"
+          
           emptyTemplate={
             <div className="ghost">
               <p className="m-0">Drag and drop files to here to upload.</p>
