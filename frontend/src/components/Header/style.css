@@ -16,3 +16,6 @@
   align-items: center;
   width: 100px;
 }
+.pi-sign-out:hover {
+  cursor: pointer;
+}

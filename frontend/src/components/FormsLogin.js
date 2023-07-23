@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Checkbox } from "primereact/checkbox";
-import { Box, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 import { Button } from "primereact/button";
+import { useNavigate } from "react-router-dom";
 
 export const FormsLogin = () => {
   const [value3, setValue3] = useState("");
@@ -10,6 +11,7 @@ export const FormsLogin = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
+  const navigate = useNavigate();
 
   const handleClickLogin = () => {
     console.log("Funcao handleClickLogin (acessar a rota de login)");
@@ -20,6 +22,7 @@ export const FormsLogin = () => {
     setUserName("");
     setPassword("");
     setChecked("");
+    navigate("/pastas");
   };
 
   return (

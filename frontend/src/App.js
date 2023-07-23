@@ -11,8 +11,8 @@ import { arquivoComponent } from "./components/ArquivoComponent";
 import { Auth } from "./components/Auth"; 
 import { ListaPasta } from "./components/ListaPasta";
 import { Header } from "./components/Header";
-
-
+import Routes, { router } from "./Router";
+import { RouterProvider } from "react-router-dom";
 function App() {
   const [showContent, setShowContent] = useState(false);
 
@@ -24,14 +24,13 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <div className={`content ${showContent ? 'fade-in' : ''}`}>
-        {/* <Header nomeUsuario={"Izaque"} /> */}
-        <Home />
-        {/* <Auth /> */}
-        {/* <ListaPasta /> */}
-      </div>
-    </div>
+    // <div className="App">
+    //   {/* <Header nomeUsuario={"Izaque Rolim"} /> */}
+    //   {/* <Home /> */}
+    //   {/* <Auth /> */}
+    //   <ListaPasta />
+    // </div>
+    <RouterProvider router={router} />
   );
 }
 
