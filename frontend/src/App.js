@@ -6,7 +6,7 @@ import "primereact/resources/primereact.min.css"; //core css
 import "primeicons/primeicons.css";
 
 import { FileUploadDemo } from "./components/FileUpload";
-import { Home } from "./components/Home";
+import { Home } from "./pages/PaginaArquivos/Home";
 import { arquivoComponent } from "./components/ArquivoComponent";
 import { Auth } from "./components/Auth"; 
 import { ListaPasta } from "./components/ListaPasta";

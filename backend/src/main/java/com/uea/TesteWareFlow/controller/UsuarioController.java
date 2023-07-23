@@ -8,6 +8,7 @@ import com.uea.TesteWareFlow.model.Usuario;
 import com.uea.TesteWareFlow.repository.PastaRepository;
 import com.uea.TesteWareFlow.repository.UsuarioRepository;
 import com.uea.TesteWareFlow.service.UsuarioPastaService;
+import com.uea.TesteWareFlow.service.UsuarioService;
 import lombok.Getter;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,10 @@ public class UsuarioController {
     UsuarioRepository usuarioRepository;
     @Autowired
     PastaRepository pastaRepository;
-
     @Autowired
     UsuarioPastaService usuarioPastaService;
+    @Autowired
+    UsuarioService usuarioService;
 
 
     PastaDto pastaDto;
@@ -43,9 +45,7 @@ public class UsuarioController {
         if(usuarioExistente!=null){
             throw new Error("Email usado por outro usuario!Tente outro");
         }
-
         usuario.setId_usuario(UUID.randomUUID());
-
 
         return usuarioRepository.save(usuario);
     }
@@ -60,12 +60,12 @@ public class UsuarioController {
             return ResponseEntity.status(500).body("Usuário ou pasta não encontradas");
         }
 
-        return usuarioPastaService.relacionarPastaUsuario(pastaEncontrada.get(),usuarioEncontrado);
+        return usuarioService.adicionarPastaAoUsuario(pastaEncontrada.get(),usuarioEncontrado);
     }
 
     @GetMapping("{id}")
-    private Usuario procurarUsuarioPeloId(@PathVariable UUID id){
-        return usuarioRepository.findById(id).get();
+    private ResponseEntity<?> procurarUsuarioPeloId(@PathVariable UUID id){
+        return ResponseEntity.ok(UsuarioDto.transformaEmDTO(usuarioRepository.findById(id).get()));
     }
 
 }

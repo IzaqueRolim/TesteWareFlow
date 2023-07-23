@@ -1,0 +1,13 @@
+{	
+    "id_arquivo": "faa646ab-7bf3-4eef-beeb-98f82f20be93",
+	"name": "file",
+	"tipo": "pptx",
+	"data_upload": "2023-07-23",
+	"pasta": {
+		"id_pasta": "87d64623-66d7-4dbb-8070-1951617ef06a",
+		"nomePasta": "Pasta do Raquel",
+		"data_criacao": "2023-07-23",
+		"rota_compartilhamento": "rota123"
+	},
+	"caminhoArquivo": "C:\\Users\\Marcos Vinicius\\Documents\\WareFlowArquivos\\DEV no-code.pptx"
+}

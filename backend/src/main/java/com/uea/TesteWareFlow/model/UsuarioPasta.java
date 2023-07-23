@@ -9,18 +9,18 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Entity
-@Data
-@Table(name = "tb_usuario_pasta")
-@AllArgsConstructor
-@NoArgsConstructor
+//@Entity
+//@Data
+//@Table(name = "tb_usuario_pasta")
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class UsuarioPasta {
-    @Id
-    private UUID id;
-
-    private UUID id_usuario;
-    private UUID id_pasta;
-
-    public UsuarioPasta(UUID idUsuario, UUID idPasta) {
-    }
+//    @Id
+//    private UUID id;
+//
+//    private UUID id_usuario;
+//    private UUID id_pasta;
+//
+//    public UsuarioPasta(UUID idUsuario, UUID idPasta) {
+//    }
 }

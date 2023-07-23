@@ -28,8 +28,6 @@ public class UsuarioPastaService {
         @Autowired
         PastaRepository pastaRepository;
 
-        @Autowired
-        UsuarioPastaRepository usuarioPastaRepository;
 
     public ResponseEntity<PastaDto> relacionarPastaUsuario(Pasta pasta,Usuario usuario){
 

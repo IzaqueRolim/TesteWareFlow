@@ -28,8 +28,15 @@ public class Usuario implements UserDetails {
     private String email;
     private String senha;
 
-
-    @ManyToMany(mappedBy = "usuarios")
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "usuario_pasta",
+            joinColumns = { @JoinColumn(name = "id_usuario") },
+            inverseJoinColumns = { @JoinColumn(name = "id_pasta") })
+    @JsonBackReference
     private List<Pasta> pastas;
 
     @Column(nullable = true)
