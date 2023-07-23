@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Paper } from "@mui/material";
 import { Button } from "primereact/button";
+import { useNavigate } from "react-router-dom";
 
 export const FormsCadastro = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleClickRegister = () => {
     console.log(
@@ -19,6 +22,8 @@ export const FormsCadastro = () => {
     setUserName("");
     setEmail("");
     setPassword("");
+
+    window.location.reload();
   };
   return (
     <Paper

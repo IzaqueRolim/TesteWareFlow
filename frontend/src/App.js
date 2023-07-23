@@ -9,14 +9,17 @@ import { Home } from "./components/Home";
 import { Auth } from "./components/Auth";
 import { ListaPasta } from "./components/ListaPasta";
 import { Header } from "./components/Header";
+import Routes, { router } from "./Router";
+import { RouterProvider } from "react-router-dom";
 function App() {
   return (
-    <div className="App">
-      <Header nomeUsuario={"Izaque Rola"} />
-      {/* <Home /> */}
-      {/* <Auth /> */}
-      <ListaPasta />
-    </div>
+    // <div className="App">
+    //   {/* <Header nomeUsuario={"Izaque Rolim"} /> */}
+    //   {/* <Home /> */}
+    //   {/* <Auth /> */}
+    //   <ListaPasta />
+    // </div>
+    <RouterProvider router={router} />
   );
 }
 
