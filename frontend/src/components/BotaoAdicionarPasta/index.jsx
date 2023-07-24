@@ -1,6 +1,6 @@
 import './style.css'
 
-export const BotaoAdicionarPasta = () =>
+export const BotaoAdicionarPasta = (props) =>
 {
-    return <button className="botaoAdicionar">+</button>
+    return <button onClick={props.funcao} className="botaoAdicionar">+</button>
 }

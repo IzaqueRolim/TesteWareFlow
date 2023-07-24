@@ -8,9 +8,9 @@ import "primeicons/primeicons.css";
 import { FileUploadDemo } from "./components/FileUpload";
 import { Home } from "./pages/PaginaArquivos/Home";
 import { arquivoComponent } from "./components/ArquivoComponent";
-import { Auth } from "./components/Auth"; 
+ 
 import { ListaPasta } from "./components/ListaPasta";
-import { Header } from "./components/Header";
+
 import Routes, { router } from "./Router";
 import { RouterProvider } from "react-router-dom";
 function App() {

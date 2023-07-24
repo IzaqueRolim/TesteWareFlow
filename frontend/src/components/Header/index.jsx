@@ -13,7 +13,7 @@ export const Header = (props) => {
 
   return (
     <div className="header">
-      <h1>Bem vindo,{props.nomeUsuario}</h1>
+      <h1>Bem vindo, {props.nomeUsuario}</h1>
       <div className="header-icones">
         <Foto>{primeiraLetra}</Foto>
         <span class="pi pi-sign-out" onClick={logout}></span>

@@ -46,20 +46,22 @@ export const ListaPasta = () => {
 
   return (
     <div className="container">
-      <Header nomeUsuario="Raquel" />
+      <Header nomeUsuario={jsonData.nome} />
 
       <div className="listaPasta">
         {jsonData.pastas.map((element,index)=>(
           <PastaComponent key = {index} nomePasta={element.nome} funcao={handlePasta}/>
         ))}
-        <BotaoAdicionarPasta onClick={()=>setModalIsOpen(true)} />
+        <BotaoAdicionarPasta funcao={()=>setModalIsOpen(true)} />
       </div>
 
       {
         modalIsOpen?<div className='modalPasta'>
             <div className='containerModal'>
-              <h2>Criar nova Pasta</h2>
-              <button onClick={esconderModal}>X</button>
+              <div className = 'titulo'>
+                <h2>Criar nova Pasta</h2>
+                <button onClick={()=>setModalIsOpen(false)}>X</button>
+              </div>
               <InputText
                 value={nomePasta}
                 type="text"

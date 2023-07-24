@@ -3,7 +3,7 @@ import React, { useState,useEffect } from "react";
 import { Foto } from "./Foto";
 import { Pessoa } from "./Pessoa";
 
-export const PeopleAcess = () => {
+export const PeopleAcess = (props) => {
   const [jsonData, setJsonData] = useState(null);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export const PeopleAcess = () => {
     <div className="people">
       <Typography variant="h6">Pessoas com acesso</Typography>
       <div className="lista_pessoas">
-        {jsonData.usuarios.map((element,index)=>(
+        {props.usuarios.map((element,index)=>(
           <Pessoa key={index} nome={element.nomeUsuario} />
         ))}
       </div>

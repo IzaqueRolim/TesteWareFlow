@@ -21,6 +21,10 @@
     cursor: pointer;
     transform: scale(1.1);
     transition: all 0.4s;
+    > img {
+      height: 45%;
+      width: 60%;
+    }
   }
   .divArquivo:not(:hover) {
     transform: scale(1);

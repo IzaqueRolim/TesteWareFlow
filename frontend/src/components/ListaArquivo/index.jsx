@@ -20,13 +20,13 @@ export const ListaArquivo = ()=>{
     }, []);
      
     if (!jsonData) {
-        return <div>Carregando...</div>;
-    }
+      return <div>Carregando...</div>;
+  }
 
     return (
         <div className="listaArquivo">
             {jsonData.arquivos.map((element,index)=>(
-                <ArquivoComponent key = {index} nomeArquivo={element.nome}  tipo ={element.tipo}/>
+                <ArquivoComponent key = {index} nomeArquivo={element.nome} tipo ={element.tipo}/>
             ))}
            
         </div>

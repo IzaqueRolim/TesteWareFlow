@@ -6,7 +6,6 @@ import { ListaArquivo } from "../../components/ListaArquivo";
 import {FileUploadBasic} from '../../components/FileUploadBasic'
 import CopiarColarComponente from "../../components/CopyComponent";
 import './style.css'
-import { json } from "react-router-dom";
 
 export const Home = () => {
   const [jsonData, setJsonData] = useState(null);
@@ -32,11 +31,13 @@ export const Home = () => {
     <>
       <Header nomeUsuario={jsonData.usuarioProprietario.nomeUsuario} />
       <div className="home">
-        {/* <FileUploadDemo /> */}
-        <ListaArquivo/>
+        {
+          jsonData.arquivos.length > 0 ?   <ListaArquivo/> : <FileUploadDemo />
+        }
+      
         <div className="part-2-home">
-          <PeopleAcess />
-          <CopiarColarComponente/>
+          <PeopleAcess usuarios = {jsonData.usuarios}/>
+          <CopiarColarComponente rota_compartilhamento={jsonData.rota_compartilhamento}/>
           <FileUploadBasic/>
         </div>
       </div>

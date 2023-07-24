@@ -1,32 +1,11 @@
 import React, { useState,useEffect } from 'react';
 import './style.css'
 
-function CopiarColarComponente() {
+function CopiarColarComponente(props) {
   const [conteudoCopiado, setConteudoCopiado] = useState(false);
 
-  const [jsonData, setJsonData] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/DadosTestes/pasta.json'); // Caminho para o arquivo JSON
-        const data = await response.json();
-        
-        setJsonData(data);
-      } catch (error) {
-        console.error('Erro ao buscar o JSON:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-  
-  
-  if (!jsonData) {
-    return <div>Carregando...</div>;
-  }
-
-  const textoParaCopiar = jsonData.rota_compartilhamento;
+  const textoParaCopiar = props.rota_compartilhamento;
 
   const copiarParaAreaDeTransferencia = () => {
     navigator.clipboard.writeText(textoParaCopiar)
