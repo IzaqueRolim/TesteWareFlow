@@ -25,7 +25,7 @@ public class Pasta {
     private LocalDate data_criacao;
     private String rota_compartilhamento;
 
-    
+
     @ManyToMany(mappedBy = "pastas")
     private List<Usuario> usuarios;
 

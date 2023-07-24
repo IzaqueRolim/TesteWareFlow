@@ -3,9 +3,9 @@ import "./style.css";
 
 export const PastaComponent = (props) => {
   return (
-    <div className="divPasta">
+    <button onClick={props.funcao} className="divPasta">
       <img src={iconPasta} />
       <span>{props.nomePasta}</span>
-    </div>
+    </button>
   );
 };
