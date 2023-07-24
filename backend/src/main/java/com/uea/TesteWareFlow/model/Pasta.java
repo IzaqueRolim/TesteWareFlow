@@ -25,9 +25,8 @@ public class Pasta {
     private LocalDate data_criacao;
     private String rota_compartilhamento;
 
-    @JsonManagedReference
+    
     @ManyToMany(mappedBy = "pastas")
-    @JsonIgnore
     private List<Usuario> usuarios;
 
     @OneToMany(mappedBy = "pasta")

@@ -7,6 +7,7 @@ import com.uea.TesteWareFlow.repository.PastaRepository;
 import com.uea.TesteWareFlow.repository.UsuarioRepository;
 import com.uea.TesteWareFlow.service.PastaService;
 import com.uea.TesteWareFlow.service.UsuarioPastaService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,13 +47,13 @@ public class PastaController {
 
     @PutMapping("adicionarUsuario")
     private ResponseEntity<PastaDto> adicionarUsuarioAPasta(@RequestBody UsuarioPastaDTO usuarioPastaDTO){
-        Optional<Usuario> usuarioEncontrado = usuarioRepository.findById(usuarioPastaDTO.getIdUsuario());
-        Optional<Pasta>     pastaEncontrada     = pastaRepository.findById(usuarioPastaDTO.getIdPasta());
+        Usuario usuarioEncontrado = usuarioRepository.findById(usuarioPastaDTO.getIdUsuario()).orElseThrow(() -> new EntityNotFoundException("Usuario não encontrada com o ID fornecido."));
+        Pasta     pastaEncontrada     = pastaRepository.findById(usuarioPastaDTO.getIdPasta()).orElseThrow(() -> new EntityNotFoundException("Pasta não encontrada com o ID fornecido."));;
 
-        System.out.println(usuarioEncontrado.get());
-        System.out.println(pastaEncontrada.get());
+        System.out.println(usuarioEncontrado);
+        System.out.println(pastaEncontrada);
 
-        return pastaService.adicionarUsuarioAPasta(pastaEncontrada.get(),usuarioEncontrado.get());
+        return pastaService.adicionarUsuarioAPasta(pastaEncontrada,usuarioEncontrado);
 
     }
 

@@ -28,6 +28,7 @@ public class Usuario implements UserDetails {
     private String email;
     private String senha;
 
+
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,

@@ -65,7 +65,7 @@ public class UsuarioController {
 
     @GetMapping("{id}")
     private ResponseEntity<?> procurarUsuarioPeloId(@PathVariable UUID id){
-        return ResponseEntity.ok(UsuarioDto.transformaEmDTO(usuarioRepository.findById(id).get()));
+        return ResponseEntity.ok(usuarioRepository.findById(id).get());
     }
 
 }
