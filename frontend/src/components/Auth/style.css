@@ -1,17 +1,16 @@
-
 .card {
   width: 350px;
   height: 90px;
 }
-p{
+p {
   color: white;
 }
-.containerSwitch{
+.containerSwitch {
   width: 250px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 500;
 }
 .card-inner {

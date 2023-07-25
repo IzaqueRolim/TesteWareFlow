@@ -38,7 +38,7 @@ export const FormsLogin = () => {
         gap: 3,
       }}
     >
-      <h1>Login</h1>
+      <h2>Login</h2>
       <div>
         <span className="p-input-icon-left">
           <i className="pi pi-user" />
@@ -61,7 +61,7 @@ export const FormsLogin = () => {
         </span>
       </div>
 
-      <div style={{width:"68%"}} className="field-checkbox">
+      <div style={{ width: "68%" }} className="field-checkbox">
         <Checkbox
           inputId="binary"
           checked={checked}
@@ -69,7 +69,12 @@ export const FormsLogin = () => {
         />
         <label htmlFor="binary">Manter conectado</label>
       </div>
-      <Button label="Entrar" aria-label="Submit" onClick={handleClickLogin} />
+      <Button
+        label="Entrar"
+        aria-label="Submit"
+        onClick={handleClickLogin}
+        style={{ width: "70%" }}
+      />
     </Paper>
   );
 };

@@ -14,7 +14,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* background-color: aqua; */
   width: 100px;
+  margin-right: 20px;
+}
+.pi-sign-out {
+  font-size: 20em;
+  width: 40px;
 }
 .pi-sign-out:hover {
   cursor: pointer;

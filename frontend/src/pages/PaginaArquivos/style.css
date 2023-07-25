@@ -1,11 +1,11 @@
-.part-2-home{
-    width: 22%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+.part-2-home {
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.home{
-    display: flex;
-    justify-content: center;
+.home {
+  display: flex;
+  justify-content: center;
 }

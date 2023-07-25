@@ -12,23 +12,19 @@ export const Auth = () => {
     <div className="login">
       <div className="containerSwitch">
         <p>Login</p>
-         <InputSwitch
-            checked={checked}
-            onChange={(e) => setChecked(e.value)}
-            />
+        <InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} />
         <p>Cadastro</p>
       </div>
-      <div className={`card ${checked ? 'flipped' : ''}`}>
+      <div className={`card ${checked ? "flipped" : ""}`}>
         <div className="card-inner">
-            <div className="card-front">
-              <FormsLogin checked={checked} />
-            </div>
-            <div className="card-back">
-              <FormsCadastro /> 
-            </div>
+          <div className="card-front">
+            <FormsLogin checked={checked} />
           </div>
+          <div className="card-back">
+            <FormsCadastro />
+          </div>
+        </div>
       </div>
     </div>
-   
   );
 };

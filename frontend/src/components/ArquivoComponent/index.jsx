@@ -1,62 +1,66 @@
-import React, { useState } from 'react';
-import iconPDF from '../../assets/iconPDF.png'
-import iconDOCX from '../../assets/iconDOCX.png'
-import iconPPTX from '../../assets/iconPPTX.png'
+import React, { useState } from "react";
+import iconPDF from "../../assets/iconPDF.png";
+import iconDOCX from "../../assets/iconDOCX.png";
+import iconPPTX from "../../assets/iconPPTX.png";
 
-import './style.css'
+import "./style.css";
 
-export const ArquivoComponent = ({nomeArquivo,tipo}) =>{
+export const ArquivoComponent = ({ nomeArquivo, tipo }) => {
+  const [isHovered, setIsHovered] = useState(false);
 
-    const [isHovered, setIsHovered] = useState(false);
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
-    const handleMouseEnter = () => {
-      setIsHovered(true);
-    };
-    const handleMouseLeave = () => {
-      setIsHovered(false);
-    };
-  
-    const handleDownload = () => {
-      // Lógica para download do arquivo
-      console.log('Download do arquivo:');
-    };
-    const handleDelete = () => {
-      // Lógica para excluir o arquivo
-      console.log('Excluir o arquivo:');
-    };
+  const handleDownload = () => {
+    // Lógica para download do arquivo
+    console.log("Download do arquivo:");
+  };
+  const handleDelete = () => {
+    // Lógica para excluir o arquivo
+    console.log("Excluir o arquivo:");
+  };
 
+  let iconArquivo = iconDOCX;
 
+  switch (tipo) {
+    case "pdf":
+      iconArquivo = iconPDF;
+      break;
+    case "docx":
+      iconArquivo = iconDOCX;
+      break;
+    case "pptx":
+      iconArquivo = iconPPTX;
+      break;
+    default:
+      break;
+  }
 
-    let iconArquivo = iconDOCX
-
-    switch (tipo) {
-        case "pdf":
-            iconArquivo = iconPDF;
-            break;
-        case "docx":
-            iconArquivo = iconDOCX;
-            break;
-        case "pptx":
-            iconArquivo = iconPPTX;
-            break;
-        default:
-            break;
-    }
-
-    return (  
-        <div 
-            className="divArquivo"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
-            <img src={iconArquivo} />
-            <span>{nomeArquivo}</span>
-            {isHovered && (
-                <div className="buttons">
-                <button className="botaoEscondido" onClick={handleDownload}> <span class="pi pi-download"></span></button>
-                <button className="botaoEscondido" onClick={handleDelete}><span class="pi pi-trash"></span></button>
-                </div>
-            )}
+  return (
+    <div
+      className="containerPasta"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className="divArquivo">
+        <img src={iconArquivo} />
+        <span>{nomeArquivo}</span>
+      </div>
+      {isHovered && (
+        <div className="buttons">
+          <button className="botaoEscondido" onClick={handleDownload}>
+            {" "}
+            <span class="pi pi-download"></span>
+          </button>
+          <button className="botaoEscondido" onClick={handleDelete}>
+            <span class="pi pi-trash"></span>
+          </button>
         </div>
-    )
-}
+      )}
+    </div>
+  );
+};

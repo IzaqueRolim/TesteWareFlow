@@ -1,6 +1,14 @@
+.containerPasta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 15px;
+}
+
 .divPasta {
-  background-color: #f1f2f7;
-  transition: background-color 0.3s ease;
+  /* transition: background-color 0.3s ease; */
+  background-color: white;
   border-radius: 15px;
   height: 170px;
   width: 180px;
@@ -17,12 +25,32 @@
   height: 65%;
   width: 80%;
 }
-.divPasta:hover {
+.containerPasta:hover {
   cursor: pointer;
   transform: scale(1.1);
   transition: all 0.4s;
 }
-.divPasta:not(:hover) {
+.divPasta:hover {
+  background-color: #f1f2f7;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+.containerPasta:not(:hover) {
   transform: scale(1);
   transition: all 0.5s;
+}
+
+.botaoEscondido {
+  width: 30px;
+  height: 30px;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  margin: 2px;
+}
+.botaoEscondido:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
 }

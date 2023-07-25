@@ -1,46 +1,65 @@
+.containerPasta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 15px;
+}
+
 .divArquivo {
-    background-color: #f1f2f7;
-    transition: background-color 0.3s ease;
-    border-radius: 15px;
-    height: 180px;
-    width: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    color: black;
-    font-size: 20px;
+  background-color: white;
+  transition: background-color 0.3s ease;
+  border-radius: 15px;
+  height: 130px;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  align-items: center;
+  text-align: center;
+  color: black;
+  font-size: 20px;
+  margin: 10px 5px;
+}
+span {
+  font-size: 16px;
+  font-weight: 600;
+}
+.divArquivo > img {
+  height: 60%;
+  width: 55%;
+}
+
+.containerPasta:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.4s;
+  > img {
+    height: 45%;
+    width: 60%;
   }
-  
-  .divArquivo > img {
-    height: 65%;
-    width: 85%;
-  }
-  .divArquivo:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-    transition: all 0.4s;
-    > img {
-      height: 45%;
-      width: 60%;
-    }
-  }
-  .divArquivo:not(:hover) {
-    transform: scale(1);
-    transition: all 0.5s;
-  }
-  .botaoEscondido{
-    width: 30px;
-    height: 30px;
-    background-color: #4F46E5;
-    color: white;
-    border: none;
-    border-radius: 2px;
-    margin: 2px;
-  }
-  .botaoEscondido:hover{
-    cursor:pointer;
-    transform: scale(1.1);
-    transition: all 0.3s ease;
-  }
+}
+.divArquivo:hover {
+  background-color: #f1f2f7;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+.containerPasta:not(:hover) {
+  transform: scale(1);
+  transition: all 0.5s;
+}
+.botaoEscondido {
+  width: 30px;
+  height: 30px;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  margin: 2px;
+}
+.botaoEscondido:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}

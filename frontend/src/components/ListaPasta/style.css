@@ -7,7 +7,6 @@
   align-items: center;
   margin-top: 20px;
   padding: 32px;
-  
 }
 
 .container {
@@ -15,52 +14,61 @@
   width: 100vw;
 }
 
-.modalPasta{
+.modalPasta {
   background-color: rgba(0, 0, 0, 0.5);
 
-  /* Defina o posicionamento para ocupar toda a tela */
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
 
-  /* Centralize o conteúdo vertical e horizontalmente */
   display: flex;
   justify-content: center;
   align-items: center;
 
-  /* Defina um alto valor de z-index para garantir que o overlay esteja acima de outros elementos */
   z-index: 9999;
 }
 
-.containerModal{
+.containerModal {
   background-color: white;
+  color: black;
   padding-top: 25px;
   padding-bottom: 35px;
   width: 300px;
-  height: 300px;
+  height: 230px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   border-radius: 15px;
+  gap: 30px;
 }
-.titulo{
+
+.containerInput {
   display: flex;
-  width: 80%;
+  flex-direction: column;
+  gap: 10px;
+  height: 70%;
+}
+
+.titulo {
+  display: flex;
+  width: 70%;
   justify-content: space-between;
   align-items: center;
-  >button{
-    background-color: rgb(193, 8, 8);
-    color: white;
+  align-content: center;
+
+  > span {
+    color: black;
     border: none;
     border-radius: 50%;
     width: 30px;
     height: 30px;
-    font-weight: 500;
+    font-weight: 700;
+    text-align: center;
   }
-  >button:hover{
+  > span:hover {
     cursor: pointer;
   }
 }

@@ -3,6 +3,7 @@ import { Toast } from "primereact/toast";
 import { FileUpload } from "primereact/fileupload";
 
 import "../styles/custompanel.css";
+import { Typography } from "@mui/material";
 
 export const FileUploadDemo = () => {
   const toast = useRef(null);
@@ -18,7 +19,12 @@ export const FileUploadDemo = () => {
   return (
     <div className="card_file">
       <div className="file_upload">
-        <h1>Upload your file</h1>
+        <Typography
+          variant="h2"
+          sx={{ fontSize: 35, fontWeight: "bold", marginBottom: 2 }}
+        >
+          Carregue seu arquivo
+        </Typography>
         <FileUpload
           name="demo[]"
           url="https://primefaces.org/primereact/showcase/upload.php"
@@ -27,7 +33,6 @@ export const FileUploadDemo = () => {
           accept="image/*"
           maxFileSize={1000000}
           chooseLabel="Escolher"
-          
           emptyTemplate={
             <div className="ghost">
               <p className="m-0">Drag and drop files to here to upload.</p>

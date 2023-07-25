@@ -26,11 +26,11 @@ export const FormsCadastro = (props) => {
     window.location.reload();
   };
 
-  const setarValoresUseState=()=>{
-    setUserName("")
-    setEmail("")
-    setPassword("")
-  }
+  const setarValoresUseState = () => {
+    setUserName("");
+    setEmail("");
+    setPassword("");
+  };
   return (
     <Paper
       elevation={3}
@@ -44,7 +44,7 @@ export const FormsCadastro = (props) => {
         justifyContent: "center",
       }}
     >
-      <h1>Cadastro</h1>
+      <h2>Cadastro</h2>
       <div>
         <span className="p-input-icon-left">
           <i className="pi pi-user" />
@@ -81,6 +81,7 @@ export const FormsCadastro = (props) => {
         label="Cadastrar"
         aria-label="Submit"
         onClick={handleClickRegister}
+        style={{ width: "70%" }}
       />
     </Paper>
   );
