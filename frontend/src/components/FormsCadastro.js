@@ -3,33 +3,66 @@ import { InputText } from "primereact/inputtext";
 import { Paper } from "@mui/material";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
+import axios from "../axios";
 
 export const FormsCadastro = (props) => {
-  const [userName, setUserName] = useState("");
+  const [nomeUsuario, setNomeUsuario] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [senha, setSenha] = useState("");
+  const [formData,setFormData] = useState({
+    nomeUsuario: '',
+    email: '',
+    senha:"",
+    pasta:[],
+    roles:null
+  });
 
-  const navigate = useNavigate();
-
-  const handleClickRegister = () => {
-    console.log(
-      "Funcao handleClickRegister (acessar a rota de cadastrar user)"
-    );
-    console.log("Username: " + userName);
-    console.log("Email: " + email);
-    console.log("Password: " + password);
-
-    setUserName("");
-    setEmail("");
-    setPassword("");
-
-    window.location.reload();
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    console.log(event.target);
+    setFormData({ ...formData, [name]: value });
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = {
+      nomeUsuario: nomeUsuario,
+      email: email,
+      senha: senha,
+      pasta:[],
+      roles:null
+    }
+    console.log(data)
+
+    // URL da API para enviar os dados
+    const apiUrl = 'http://localhost:8080/usuario';
+
+    // Fazendo a solicitação POST usando Axios
+    axios.post(apiUrl,data,{
+      withCredentials: true, // Habilita envio de cookies (se necessário)
+      headers: {
+        'Access-Control-Allow-Origin': '*', // Ou especifique a origem do domínio do seu aplicativo React
+        'Access-Control-Allow-Methods': 'POST', // Especifique os métodos permitidos
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization', // Especifique os headers permitidos
+      },
+    })
+      .then(response => {
+        console.log('Resposta do servidor:', response.data);
+     
+      })
+      .catch(error => {
+        console.error('Erro na solicitação:', error);
+        // Trate o erro, se necessário
+      });
+  };
+  const navigate = useNavigate();
+
+
+
   const setarValoresUseState = () => {
-    setUserName("");
+    setNomeUsuario("");
     setEmail("");
-    setPassword("");
+    setSenha("");
   };
   return (
     <Paper
@@ -49,8 +82,8 @@ export const FormsCadastro = (props) => {
         <span className="p-input-icon-left">
           <i className="pi pi-user" />
           <InputText
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
+            name="nomeUsuario"
+            onChange={(event)=>setNomeUsuario(event.target.value)}
             placeholder="Login"
           />
         </span>
@@ -59,8 +92,7 @@ export const FormsCadastro = (props) => {
         <span className="p-input-icon-left">
           <i className="pi pi-shield" />
           <InputText
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e)=>setEmail(e.target.value)}
             placeholder="Email"
           />
         </span>
@@ -69,9 +101,8 @@ export const FormsCadastro = (props) => {
         <span className="p-input-icon-left">
           <i className="pi pi-shield" />
           <InputText
-            value={password}
+            onChange={(e)=>setSenha(e.target.value)}
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
             placeholder="Senha"
           />
         </span>
@@ -80,7 +111,7 @@ export const FormsCadastro = (props) => {
       <Button
         label="Cadastrar"
         aria-label="Submit"
-        onClick={handleClickRegister}
+        onClick={(e)=>handleSubmit(e)}
         style={{ width: "70%" }}
       />
     </Paper>
