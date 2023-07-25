@@ -65,6 +65,26 @@ public class UsuarioController {
         return usuarioService.adicionarPastaAoUsuario(pastaEncontrada.get(),usuarioEncontrado);
     }
 
+    @PutMapping("{id}")
+    private ResponseEntity<?> editarUsuario(@RequestBody Usuario usuario, @PathVariable UUID id){
+        Usuario usuarioEncontrado = usuarioRepository.findById(id).orElse(null);
+
+        if(usuarioEncontrado!= null){
+            if(usuario.getNomeUsuario() != null){
+                usuarioEncontrado.setNomeUsuario(usuario.getNomeUsuario());
+            }
+            if(usuario.getEmail() != null){
+                usuarioEncontrado.setEmail(usuario.getEmail());
+            }
+            if(usuario.getSenha() != null){
+                usuarioEncontrado.setSenha(usuario.getSenha());
+            }
+
+            return ResponseEntity.ok(usuarioRepository.save(usuarioEncontrado));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @GetMapping("{id}")
     private ResponseEntity<?> procurarUsuarioPeloId(@PathVariable UUID id){
         return ResponseEntity.ok(UsuarioDto.transformaEmDTO(usuarioRepository.findById(id).get()));

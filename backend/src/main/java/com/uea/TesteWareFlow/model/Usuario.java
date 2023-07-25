@@ -3,6 +3,8 @@ package com.uea.TesteWareFlow.model;
 import com.fasterxml.jackson.annotation.*;
 import com.uea.TesteWareFlow.dto.PastaDto;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,8 +26,11 @@ public class Usuario implements UserDetails {
     @Id
     @GeneratedValue
     private UUID id_usuario;
+    @NotBlank(message = "O nome pode estar em branco")
     private String nomeUsuario;
+    @Email(message = "Email invalido")
     private String email;
+    @NotBlank(message = "A senha nao pode estar em branco")
     private String senha;
 
 

@@ -29,14 +29,13 @@ export const Header = (props) => {
         {props.titulo}
       </Typography>
       <div
-      onMouseEnter={()=>setIsHovered(true)}
-      onMouseLeave={()=>setIsHovered(false)}
+      onClick={()=>setIsHovered(!isHovered)}
       className="header-icones">
-        <Foto>{primeiraLetra}</Foto>
+        {/* <Foto color={"purple"}>{primeiraLetra}</Foto> */}
         {
           props.usuarios.length>0?
           props.usuarios.map((element,index)=>(
-            <Foto key={index}>{element.nomeUsuario}</Foto>
+            <Foto color={"red"} key={index}>{element.nomeUsuario}</Foto>
           )):<></>
         }
         <span

@@ -20,11 +20,11 @@ import java.util.UUID;
 public class PastaDto {
     private UUID id;
 
-    private String nome;
+    private String nomePasta;
     private LocalDate data_criacao;
     private String rota_compartilhamento;
     private List<Usuario> usuarios;
-    private  List<Arquivo> arquivos;
+    private List<Arquivo> arquivos;
 
     public static PastaDto transformaEmDTO(Pasta pasta){
         return new PastaDto(pasta.getId_pasta(),pasta.getNomePasta(),pasta.getData_criacao(),pasta.getRota_compartilhamento(),pasta.getUsuarios(),pasta.getArquivos());

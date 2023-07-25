@@ -8,6 +8,7 @@ import com.uea.TesteWareFlow.repository.UsuarioRepository;
 import com.uea.TesteWareFlow.service.PastaService;
 import com.uea.TesteWareFlow.service.UsuarioPastaService;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +44,28 @@ public class PastaController {
 
 
         return pastaService.criarNovaPasta(pasta,usuarioExistente.get());
+    }
+
+    @PutMapping("{id}")
+    private ResponseEntity<?> editarPasta(@RequestBody Pasta pasta, @PathVariable UUID id){
+        Pasta pastaEncontrada = pastaRepository.findById(id).orElse(null);
+
+        if (pastaEncontrada != null) {
+            pastaEncontrada.setNomePasta(pasta.getNomePasta());
+
+            return ResponseEntity.ok(pastaRepository.save(pastaEncontrada));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("{id}")
+    private ResponseEntity<?> deletarPasta(@PathVariable UUID id){
+        if(pastaRepository.existsById(id)){
+            pastaRepository.deleteById(id);
+            return ResponseEntity.ok("Deletado com sucesso");
+        }
+
+        return  ResponseEntity.notFound().build();
     }
 
     @PutMapping("adicionarUsuario")
