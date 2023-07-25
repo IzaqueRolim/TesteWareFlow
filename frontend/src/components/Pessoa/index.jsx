@@ -6,7 +6,7 @@ export const Pessoa = ({ nome }) => {
   return (
     <div className="pessoa">
       <Foto>{nome}</Foto>
-      <p>{nome}</p>
+      <span>{nome}</span>
     </div>
   );
 };

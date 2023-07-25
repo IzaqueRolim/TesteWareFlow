@@ -4,7 +4,7 @@ import { Paper } from "@mui/material";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
 
-export const FormsCadastro = () => {
+export const FormsCadastro = (props) => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,11 +25,17 @@ export const FormsCadastro = () => {
 
     window.location.reload();
   };
+
+  const setarValoresUseState=()=>{
+    setUserName("")
+    setEmail("")
+    setPassword("")
+  }
   return (
     <Paper
       elevation={3}
       sx={{
-        height: "50vh",
+        height: "60vh",
         width: "25vw",
         display: "flex",
         flexDirection: "column",
@@ -38,13 +44,14 @@ export const FormsCadastro = () => {
         justifyContent: "center",
       }}
     >
+      <h1>Cadastro</h1>
       <div>
         <span className="p-input-icon-left">
           <i className="pi pi-user" />
           <InputText
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
-            placeholder="Username"
+            placeholder="Login"
           />
         </span>
       </div>
@@ -65,7 +72,7 @@ export const FormsCadastro = () => {
             value={password}
             type="password"
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
+            placeholder="Senha"
           />
         </span>
       </div>

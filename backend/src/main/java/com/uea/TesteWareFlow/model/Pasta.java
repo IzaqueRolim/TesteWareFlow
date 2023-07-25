@@ -10,6 +10,7 @@ import java.rmi.server.UID;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -26,8 +27,9 @@ public class Pasta {
     private String rota_compartilhamento;
 
 
-    @ManyToMany(mappedBy = "pastas")
-    private List<Usuario> usuarios;
+    @ManyToMany(mappedBy = "pastas",cascade = {CascadeType.ALL},fetch= FetchType.EAGER)
+    @JsonIgnore
+    List<Usuario> usuarios;
 
     @OneToMany(mappedBy = "pasta")
     private List<Arquivo>arquivos = new ArrayList<>();

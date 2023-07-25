@@ -56,8 +56,6 @@ public class ArquivoService {
                 arquivo.setPasta(pasta);
 
                 return ResponseEntity.ok(arquivoRepository.save(arquivo));
-//                pasta.getArquivos().add(arquivo);
-//                pastaRepository.save(pasta);
             }
             return ResponseEntity.status(500).body("Insira o arquivo");
         }catch (IOException e){

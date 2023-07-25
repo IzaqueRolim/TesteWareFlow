@@ -19,7 +19,7 @@ function CopiarColarComponente(props) {
   return (
     <div className='divCopy'>
         <div className='textoCopiar'>
-            <p>{textoParaCopiar}</p>
+            <span>{textoParaCopiar}</span>
         </div>
       <button className='botaoCopiar' onClick={copiarParaAreaDeTransferencia}>
         {conteudoCopiado ? 'Copiado!' : 'Copiar'}

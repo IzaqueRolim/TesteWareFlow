@@ -53,10 +53,12 @@
   align-items: center;
   >button{
     background-color: rgb(193, 8, 8);
+    color: white;
     border: none;
     border-radius: 50%;
     width: 30px;
     height: 30px;
+    font-weight: 500;
   }
   >button:hover{
     cursor: pointer;

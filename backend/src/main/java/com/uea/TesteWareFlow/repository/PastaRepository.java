@@ -24,4 +24,7 @@ public interface PastaRepository extends JpaRepository<Pasta, UUID> {
             "JOIN\n" +
             "    tb_usuario u ON tbup.usuarios_id_usuario = u.id_usuario WHERE  p.id_pasta=id;",nativeQuery = true)
     Optional<Pasta> findUsuarios(@Param("id")UUID id);
+
+    @Query(value = "INSERT INTO usuario_pasta VALUES(:id_usuario,:id_pasta)",nativeQuery = true)
+    void adicionarUsuarioPasta(UUID id_usuario,UUID id_pasta);
 }

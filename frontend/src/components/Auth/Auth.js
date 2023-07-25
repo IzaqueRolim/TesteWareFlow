@@ -10,16 +10,18 @@ export const Auth = () => {
 
   return (
     <div className="login">
-      <div>
+      <div className="containerSwitch">
+        <p>Login</p>
          <InputSwitch
             checked={checked}
             onChange={(e) => setChecked(e.value)}
-          />
+            />
+        <p>Cadastro</p>
       </div>
-      <div className={`card ${checked ? 'flipped' : ''}`} onClick={()=>setChecked(!checked)}>
+      <div className={`card ${checked ? 'flipped' : ''}`}>
         <div className="card-inner">
             <div className="card-front">
-              <FormsLogin />
+              <FormsLogin checked={checked} />
             </div>
             <div className="card-back">
               <FormsCadastro /> 

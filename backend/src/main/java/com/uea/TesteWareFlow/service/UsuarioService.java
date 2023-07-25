@@ -18,10 +18,10 @@ public class UsuarioService {
     PastaRepository pastaRepository;
     public ResponseEntity<?> adicionarPastaAoUsuario(Pasta pasta, Usuario usuario) {
         Usuario _usuario = usuario;
-        List<Usuario> listaUsuarios = pasta.getUsuarios();
-        listaUsuarios.add(_usuario);
-
-        pasta.setUsuarios(listaUsuarios);
+//        List<Usuario> listaUsuarios = pasta.getUsuarios();
+//        listaUsuarios.add(_usuario);
+//
+//        pasta.setUsuarios(listaUsuarios);
         UUID idPasta = pasta.getId_pasta();
         pasta.setId_pasta(idPasta ==null ? UUID.randomUUID(): idPasta);
 

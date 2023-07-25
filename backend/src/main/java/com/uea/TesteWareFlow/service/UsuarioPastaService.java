@@ -4,19 +4,12 @@ import com.uea.TesteWareFlow.dto.PastaDto;
 import com.uea.TesteWareFlow.dto.UsuarioDto;
 import com.uea.TesteWareFlow.model.Pasta;
 import com.uea.TesteWareFlow.model.Usuario;
-import com.uea.TesteWareFlow.model.UsuarioPasta;
 import com.uea.TesteWareFlow.repository.PastaRepository;
-import com.uea.TesteWareFlow.repository.UsuarioPastaRepository;
 import com.uea.TesteWareFlow.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -32,10 +25,10 @@ public class UsuarioPastaService {
     public ResponseEntity<PastaDto> relacionarPastaUsuario(Pasta pasta,Usuario usuario){
 
         Usuario _usuario = usuario;
-        List<Usuario> listaUsuarios = pasta.getUsuarios();
-        listaUsuarios.add(_usuario);
-
-        pasta.setUsuarios(listaUsuarios);
+//        List<Usuario> listaUsuarios = pasta.getUsuarios();
+//        listaUsuarios.add(_usuario);
+//
+//        pasta.setUsuarios(listaUsuarios);
         UUID idPasta = pasta.getId_pasta();
         pasta.setId_pasta(idPasta ==null ? UUID.randomUUID(): idPasta);
 
@@ -47,11 +40,11 @@ public class UsuarioPastaService {
     }
     public ResponseEntity<UsuarioDto> relacionarUsuarioPasta(Pasta pasta, Usuario usuario){
 
-        List<Pasta> listaPasta = usuario.getPastas();
-        listaPasta.add(pasta);
-        System.out.println(listaPasta);
-
-        usuario.setPastas(listaPasta);
+//        List<Pasta> listaPasta = usuario.getPastas();
+//        listaPasta.add(pasta);
+//        System.out.println(listaPasta);
+//
+//        usuario.setPastas(listaPasta);
 
         Usuario _usuario = usuarioRepository.save(usuario);
         System.out.println(_usuario);

@@ -29,7 +29,7 @@ export const FormsLogin = () => {
     <Paper
       elevation={3}
       sx={{
-        height: "50vh",
+        height: "60vh",
         width: "25vw",
         display: "flex",
         flexDirection: "column",
@@ -38,13 +38,14 @@ export const FormsLogin = () => {
         gap: 3,
       }}
     >
+      <h1>Login</h1>
       <div>
         <span className="p-input-icon-left">
           <i className="pi pi-user" />
           <InputText
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
-            placeholder="Username"
+            placeholder="Login"
           />
         </span>
       </div>
@@ -55,18 +56,18 @@ export const FormsLogin = () => {
             value={password}
             type="password"
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
+            placeholder="Senha"
           />
         </span>
       </div>
 
-      <div className="field-checkbox">
+      <div style={{width:"68%"}} className="field-checkbox">
         <Checkbox
           inputId="binary"
           checked={checked}
           onChange={(e) => setChecked(e.checked)}
         />
-        <label htmlFor="binary">Remember Me</label>
+        <label htmlFor="binary">Manter conectado</label>
       </div>
       <Button label="Entrar" aria-label="Submit" onClick={handleClickLogin} />
     </Paper>
