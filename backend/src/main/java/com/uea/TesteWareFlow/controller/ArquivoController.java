@@ -56,8 +56,8 @@ public class ArquivoController {
     }
 
     @GetMapping(value = "/download/{file}")
-    private ResponseEntity<Resource> downloadFile(@PathVariable String fileName){
-        return arquivoService.baixarArquivos(fileName);
+    private ResponseEntity<Resource> downloadFile(@PathVariable String file){
+        return arquivoService.baixarArquivos(file);
     }
 
     @GetMapping()
@@ -66,7 +66,7 @@ public class ArquivoController {
     }
 
     @GetMapping(value ="/{id}")
-    private Arquivo procurarPeloId(@PathVariable Long id){
+    private Arquivo procurarPeloId(@PathVariable UUID id){
          Optional<Arquivo> arquivoEncontrado = arquivoRepository.findById(id);
 
          return arquivoEncontrado.get();

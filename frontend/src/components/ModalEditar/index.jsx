@@ -3,7 +3,7 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { useState } from "react";
 
-export const ModalEditar = ({ setModalEditarIsOpen, pasta }) => {
+export const ModalEditar = ({ setModalEditarIsOpen,setNomeEditadoPasta,editarPasta, pasta }) => {
   const [nomePasta, setNomePasta] = useState(pasta);
   return (
     <div className="modalPasta">
@@ -28,12 +28,11 @@ export const ModalEditar = ({ setModalEditarIsOpen, pasta }) => {
         </div>
         <div className="containerInput">
           <InputText
-            value={nomePasta}
             type="text"
-            onChange={(e) => setNomePasta(e.target.value)}
+            onChange={(e) => setNomeEditadoPasta(e.target.value)}
             placeholder="Nome da Pasta"
           />
-          <Button label="Salvar" aria-label="Submit" />
+          <Button label="Salvar" aria-label="Submit" onClick={editarPasta}/>
         </div>
       </div>
     </div>

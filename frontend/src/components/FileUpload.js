@@ -6,14 +6,37 @@ import "../styles/custompanel.css";
 import { Typography } from "@mui/material";
 
 export const FileUploadDemo = () => {
-  const toast = useRef(null);
+  const [file, setFile] = useState(null);
 
-  const onUpload = () => {
-    toast.current.show({
-      severity: "info",
-      summary: "Success",
-      detail: "File Uploaded",
-    });
+  const onFileSelect = (event) => {
+    setFile(event.files[0]);
+    console.log(event)
+  };
+
+
+  const onUpload = async(event) => {
+    console.log("Upload",event);
+    const formData = new FormData();
+    formData.append("file", event); 
+
+    const url = `http://localhost:8080/arquivos/upload/${localStorage.getItem("id_pasta")}`;
+
+    try {
+      await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+       // window.location.href = window.location.href
+      })
+    } catch (error) {
+      console.log("teve erro",error);
+    }
   };
 
   return (
@@ -27,15 +50,15 @@ export const FileUploadDemo = () => {
         </Typography>
         <FileUpload
           name="demo[]"
-          url="https://primefaces.org/primereact/showcase/upload.php"
-          onUpload={onUpload}
+          onUpload={onFileSelect}
+          customUpload uploadHandler={onUpload}
           multiple
           accept="image/*"
           maxFileSize={1000000}
           chooseLabel="Escolher"
           emptyTemplate={
             <div className="ghost">
-              <p className="m-0">Drag and drop files to here to upload.</p>
+              <p className="m-0">Arraste e solte seus arquivos aqui.</p>
             </div>
           }
         />

@@ -11,6 +11,7 @@ import com.uea.TesteWareFlow.service.UsuarioPastaService;
 import com.uea.TesteWareFlow.service.UsuarioService;
 import lombok.Getter;
 import org.apache.catalina.User;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +38,20 @@ public class UsuarioController {
 
 
     PastaDto pastaDto;
+    @PostMapping("login")
+    private ResponseEntity<?> login(@RequestBody Usuario usuario){
+            Usuario usuarioEncontrado = usuarioRepository.findByEmail(usuario.getEmail());
+            System.out.println(usuarioEncontrado);
+            System.out.println(usuario.getSenha());
+            System.out.println(usuario.getSenha().equals(usuarioEncontrado.getSenha()));
+             boolean senhaEstaCorreta = usuario.getSenha().equals(usuarioEncontrado.getSenha());
+
+            if(usuarioEncontrado != null && senhaEstaCorreta){
+                    return ResponseEntity.ok(usuarioEncontrado);
+            }
+
+            return ResponseEntity.status(400).body("Usuario ou senha incorretos");
+    }
 
     @PostMapping
     private Usuario createUser(@RequestBody Usuario usuario){

@@ -11,27 +11,39 @@ export const Home = () => {
   const [jsonData, setJsonData] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/DadosTestes/pasta.json"); // Caminho para o arquivo JSON
-        const data = await response.json();
-        setJsonData(data);
-      } catch (error) {
-        console.error("Erro ao buscar o JSON:", error);
-      }
-    };
-
-    fetchData();
+    postUsuario();
   }, []);
+
+
+  async function postUsuario() {
+   
+    const url = `http://localhost:8080/pasta/${localStorage.getItem("id_pasta")}`
+    console.log(url)
+    try {
+    await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        setJsonData(data);
+        console.log(data)
+      })
+    } catch (error) {
+      console.log("teve erro",error);
+    }
+  }
 
   if (!jsonData) {
     return <div>Carregando...</div>;
   }
   return (
     <>
-      <Header usuarios={jsonData.usuarios} titulo={jsonData.nome} nomeUsuario = {jsonData.usuarioProprietario.nomeUsuario} />
+      <Header usuarios={jsonData.usuarios} titulo={jsonData.nomePasta}/>
       <div className="home">
-        {jsonData.arquivos.length > 0 ? <ListaArquivo /> : <FileUploadDemo />}
+        {jsonData.arquivos.length > 0 ? <ListaArquivo arquivos={jsonData.arquivos} /> : <FileUploadDemo />}
 
         <div className="part-2-home">
           {/* <PeopleAcess usuarios={jsonData.usuarios} />

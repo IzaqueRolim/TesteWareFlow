@@ -8,59 +8,51 @@ import axios from "axios";
 
 export const FormsLogin = () => {
   const [value3, setValue3] = useState("");
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
   const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
-  const [formData,setFormData] = useState({
-    nomeUsuario: '',
-    email: '',
-    senha:"",
-    pasta:[],
-    roles:null
-  });
+ 
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  async function login() {  
+    const data = {
+      email: email,
+      senha: senha
+    }
+    console.log(data)
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // URL da API para enviar os dados
-    const apiUrl = 'http://localhost:8080/usuario';
-
-    // Fazendo a solicitação POST usando Axios
-    axios.post(apiUrl, formData)
-      .then(response => {
-        console.log('Resposta do servidor:', response.data);
-     
+    try {
+      await fetch("http://localhost:8080/usuario/login", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch(error => {
-        console.error('Erro na solicitação:', error);
-        // Trate o erro, se necessário
-      });
-  };
+      .then(response => response.json())
+      .then(data => {
+        // Aqui você tem acesso aos dados do corpo da resposta em formato JSON
+        console.log(data);
+        localStorage.setItem('idUsuario',data.id_usuario);
+        navigate("/pastas");
+      })
+    } catch (error) {
+      console.log("teve erro",error);
+    }
+  }
 
 
   const handleClickLogin = () => {
-    console.log("Funcao handleClickLogin (acessar a rota de login)");
-    console.log("Username: " + userName);
-    console.log("Password: " + password);
-    console.log("Remember Me: " + checked);
-
-    setUserName("");
-    setPassword("");
-    setChecked("");
-    navigate("/pastas");
+ 
+    login();
+    
   };
 
   return (
     <Paper
       elevation={3}
       sx={{
-        height: "50vh",
+        height: "55vh",
         width: "25vw",
         display: "flex",
         flexDirection: "column",
@@ -74,8 +66,8 @@ export const FormsLogin = () => {
         <span className="p-input-icon-left">
           <i className="pi pi-user" />
           <InputText
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Login"
           />
         </span>
@@ -84,9 +76,9 @@ export const FormsLogin = () => {
         <span className="p-input-icon-left">
           <i className="pi pi-shield" />
           <InputText
-            value={password}
+            value={senha}
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setSenha(e.target.value)}
             placeholder="Senha"
           />
         </span>

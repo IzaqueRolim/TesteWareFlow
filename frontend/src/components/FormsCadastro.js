@@ -23,8 +23,11 @@ export const FormsCadastro = (props) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const navigate = useNavigate();
+
+  async function postUsuario(e) {
+    e.preventDefault();
+
     const data = {
       nomeUsuario: nomeUsuario,
       email: email,
@@ -34,41 +37,32 @@ export const FormsCadastro = (props) => {
     }
     console.log(data)
 
-    // URL da API para enviar os dados
-    const apiUrl = 'http://localhost:8080/usuario';
-
-    // Fazendo a solicitação POST usando Axios
-    axios.post(apiUrl,data,{
-      withCredentials: true, // Habilita envio de cookies (se necessário)
-      headers: {
-        'Access-Control-Allow-Origin': '*', // Ou especifique a origem do domínio do seu aplicativo React
-        'Access-Control-Allow-Methods': 'POST', // Especifique os métodos permitidos
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization', // Especifique os headers permitidos
-      },
-    })
-      .then(response => {
-        console.log('Resposta do servidor:', response.data);
-     
+    try {
+      await fetch("http://localhost:8080/usuario", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch(error => {
-        console.error('Erro na solicitação:', error);
-        // Trate o erro, se necessário
-      });
-  };
-  const navigate = useNavigate();
+      .then(response => response.json())
+      .then(data => {
+        // Aqui você tem acesso aos dados do corpo da resposta em formato JSON
+        console.log(data);
+        localStorage.setItem('idUsuario',data.id_usuario);
+        alert("Cadastrado com sucesso");
+        navigate("/pastas");
+      })
+    } catch (error) {
+      console.log("teve erro",error);
+    }
+  }
 
-
-
-  const setarValoresUseState = () => {
-    setNomeUsuario("");
-    setEmail("");
-    setSenha("");
-  };
   return (
     <Paper
       elevation={3}
       sx={{
-        height: "55vh",
+        height: "60vh",
         width: "25vw",
         display: "flex",
         flexDirection: "column",
@@ -84,7 +78,7 @@ export const FormsCadastro = (props) => {
           <InputText
             name="nomeUsuario"
             onChange={(event)=>setNomeUsuario(event.target.value)}
-            placeholder="Login"
+            placeholder="Seu nome"
           />
         </span>
       </div>
@@ -111,7 +105,7 @@ export const FormsCadastro = (props) => {
       <Button
         label="Cadastrar"
         aria-label="Submit"
-        onClick={(e)=>handleSubmit(e)}
+        onClick={(e)=>postUsuario(e)}
         style={{ width: "70%" }}
       />
     </Paper>

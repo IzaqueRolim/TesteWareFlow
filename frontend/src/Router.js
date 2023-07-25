@@ -6,7 +6,7 @@ import { ListaPasta } from "./components/ListaPasta";
 export const router = createBrowserRouter([
   {
     path: "/arquivos",
-    element: <Home />,
+    element: <Home/>,
   },
   {
     path: "/pastas",

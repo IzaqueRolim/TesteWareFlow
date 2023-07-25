@@ -11,35 +11,60 @@ import { IconButton, Typography } from "@mui/material";
 export const ListaPasta = () => {
   const [jsonData, setJsonData] = useState(null);
   const [nomePasta, setNomePasta] = useState("");
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [nomeNovaPasta, setNomeNovaPasta] = useState("")
+  const [modalCriarPastaIsOpen, setModalCriarPastaIsOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/DadosTestes/usuario.json"); // Caminho para o arquivo JSON
-        const data = await response.json();
-        setJsonData(data);
-      } catch (error) {
-        console.error("Erro ao buscar o JSON:", error);
-      }
-    };
-
-    fetchData();
+    postUsuario();
   }, []);
 
-  const handlePasta = () => {
-    navigate("/arquivos");
-  };
 
-  const mostrarModal = () => {
-    setModalIsOpen(true);
-    console.log("modalIsOpen");
-  };
+  async function postUsuario() {
+    const url = `http://localhost:8080/usuario/${localStorage.getItem("idUsuario")}`
+    console.log(url)
+    try {
+    await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        setJsonData(data);
+        console.log(data.pastas)
+      })
+    } catch (error) {
+      console.log("teve erro",error);
+    }
+  }
 
-  const esconderModal = () => {
-    setModalIsOpen(false);
-  };
+  async function criarPasta(){
+    const data = {
+      nomePasta: nomeNovaPasta
+    }
+    console.log(data)
+    const url = `http://localhost:8080/pasta/${localStorage.getItem("idUsuario")}`;
+
+    try {
+      await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setModalCriarPastaIsOpen(false);
+        window.location.href = window.location.href
+      })
+    } catch (error) {
+      console.log("teve erro",error);
+    }
+  }
 
   if (!jsonData) {
     return <div>Carregando...</div>;
@@ -52,15 +77,15 @@ export const ListaPasta = () => {
       <div className="listaPasta">
         {jsonData.pastas.map((element, index) => (
           <PastaComponent
-            key={index}
-            nomePasta={element.nome}
-            funcao={handlePasta}
+            key={element.id_pasta}
+            nomePasta={element.nomePasta}
+            id={element.id_pasta}
           />
         ))}
-        <BotaoAdicionarPasta funcao={() => setModalIsOpen(true)} />
+        <BotaoAdicionarPasta funcao={() => setModalCriarPastaIsOpen(true)} />
       </div>
 
-      {modalIsOpen ? (
+      {modalCriarPastaIsOpen ? (
         <div className="modalPasta">
           <div className="containerModal">
             <div className="titulo">
@@ -75,19 +100,18 @@ export const ListaPasta = () => {
 
               <span
                 className="p-input-icon-left"
-                onClick={() => setModalIsOpen(false)}
+                onClick={() => setModalCriarPastaIsOpen(false)}
               >
                 <i className="pi pi-times" />
               </span>
             </div>
             <div className="containerInput">
               <InputText
-                value={nomePasta}
                 type="text"
-                onChange={(e) => setNomePasta(e.target.value)}
+                onChange={(e) => setNomeNovaPasta(e.target.value)}
                 placeholder="Nome da Pasta"
               />
-              <Button label="Criar" aria-label="Submit" />
+              <Button label="Criar" aria-label="Submit"  onClick={criarPasta}/>
             </div>
           </div>
         </div>

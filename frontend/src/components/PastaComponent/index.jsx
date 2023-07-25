@@ -5,12 +5,41 @@ import { Button, Typography } from "@mui/material";
 import { InputText } from "primereact/inputtext";
 import { ModalEditar } from "../ModalEditar";
 import { ModalExcluir } from "../ModalExcluir";
+import { useNavigate } from "react-router-dom";
 
 export const PastaComponent = (props) => {
   const [isHovered, setIsHovered] = useState(false);
   const [modalEditarIsOpen, setModalEditarIsOpen] = useState(false);
   const [modalExcluirIsOpen, setModalExcluirIsOpen] = useState(false);
+  const [nomeEditadoPasta, setNomeEditadoPasta] = useState("");
+  const navigate = useNavigate();
 
+
+  async function editar(){
+    const data = {
+      nomePasta: nomeEditadoPasta
+    }
+    console.log(data)
+    const url = `http://localhost:8080/pasta/${localStorage.getItem("id_pasta")}`;
+
+    try {
+      await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setModalEditarIsOpen(false);
+        window.location.href = window.location.href
+      })
+    } catch (error) {
+      console.log("teve erro",error);
+    }
+  }
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -28,6 +57,12 @@ export const PastaComponent = (props) => {
     setModalExcluirIsOpen(true);
     console.log("Excluir a pasta:");
   };
+
+  const handlePasta = () => {
+    navigate("/arquivos");
+    console.log(props)
+    localStorage.setItem("id_pasta",props.id);
+  };
   return (
     <>
       <div
@@ -35,7 +70,7 @@ export const PastaComponent = (props) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <button onClick={props.funcao} className="divPasta">
+        <button onClick={handlePasta} className="divPasta">
           <img src={iconPasta} />
           <span>{props.nomePasta}</span>
         </button>
@@ -54,6 +89,8 @@ export const PastaComponent = (props) => {
       {modalEditarIsOpen ? (
         <ModalEditar
           setModalEditarIsOpen={setModalEditarIsOpen}
+          setNomeEditadoPasta = {setNomeEditadoPasta}
+          editarPasta = {editar}
           pasta={props.nomePasta}
         />
       ) : (

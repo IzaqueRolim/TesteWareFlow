@@ -8,11 +8,13 @@ import { hover } from "@testing-library/user-event/dist/hover";
 
 export const Header = (props) => {
   const [isHovered, setIsHovered] = useState(false);
-  const primeiraLetra = props.nomeUsuario.slice(0, 1);
+  //const primeiraLetra = props.nomeUsuario.slice(0, 1);
   const navigate = useNavigate();
 
   const logout = () => {
     console.log("log");
+    localStorage.setItem("idUsuario","")
+    localStorage.setItem("id_pasta","")
     navigate("/");
   };
 
@@ -35,7 +37,7 @@ export const Header = (props) => {
         {
           props.usuarios.length>0?
           props.usuarios.map((element,index)=>(
-            <Foto color={"red"} key={index}>{element.nomeUsuario}</Foto>
+            <Foto color={"#5e2d95"} key={index}>{element.nomeUsuario}</Foto>
           )):<></>
         }
         <span

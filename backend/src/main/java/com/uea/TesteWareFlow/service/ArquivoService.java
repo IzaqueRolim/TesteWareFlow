@@ -49,7 +49,7 @@ public class ArquivoService {
                 Arquivo arquivo = new Arquivo();
 
                 arquivo.setId_arquivo(UUID.randomUUID());
-                arquivo.setName(file.getName());
+                arquivo.setName(file.getOriginalFilename());
                 arquivo.setTipo(identificarTipoArquivo(file.getOriginalFilename()));
                 arquivo.setData_upload(dataAtual);
                 arquivo.setCaminhoArquivo(arquivoPath.toString());
@@ -64,8 +64,8 @@ public class ArquivoService {
         }
     }
 
-    public ResponseEntity<Resource> baixarArquivos(@PathVariable String file){
-        String caminhoDocumentos = System.getProperty("user.home") + "/Documents/MeusArquivos/" ;
+    public ResponseEntity<Resource> baixarArquivos(String file){
+        String caminhoDocumentos = System.getProperty("user.home") + "/Documents/WareFlowArquivos/" ;
         Path arquivoPath = Paths.get(caminhoDocumentos, file);
 
         boolean arquivoExiste = Files.exists(arquivoPath);
@@ -74,7 +74,7 @@ public class ArquivoService {
 
             String contentType = null;
             try {
-                contentType = Files.probeContentType(resource.getFile().toPath());
+                contentType = Files.probeContentType(arquivoPath);
                 System.out.println(resource.getFile().toPath());
             } catch (IOException e) {
                 e.printStackTrace();
