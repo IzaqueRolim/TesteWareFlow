@@ -3,9 +3,7 @@ package com.uea.TesteWareFlow.model;
 import com.fasterxml.jackson.annotation.*;
 import com.uea.TesteWareFlow.dto.PastaDto;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +15,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "tb_usuario")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -38,7 +37,6 @@ public class Usuario implements UserDetails {
     @JoinTable(name = "usuario_pasta",
             joinColumns = { @JoinColumn(name = "id_usuario") },
             inverseJoinColumns = { @JoinColumn(name = "id_pasta") })
-    @JsonIgnore
     List<Pasta> pastas;
 
     @Column(nullable = true)

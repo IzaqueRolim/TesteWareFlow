@@ -25,7 +25,7 @@ export const PeopleAcess = (props) => {
   }
 
   return (
-    <div className="people">
+    <div className={props.nomeClasse}>
       <Typography variant="h6">Pessoas com acesso</Typography>
       <div className="lista_pessoas">
         {props.usuarios.map((element,index)=>(

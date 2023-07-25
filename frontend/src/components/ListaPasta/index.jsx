@@ -47,7 +47,7 @@ export const ListaPasta = () => {
 
   return (
     <div className="container">
-      <Header nomeUsuario={jsonData.nome} />
+      <Header usuarios={[]} titulo={"Bem vindo, " + jsonData.nome} nomeUsuario={jsonData.nome} />
 
       <div className="listaPasta">
         {jsonData.pastas.map((element, index) => (

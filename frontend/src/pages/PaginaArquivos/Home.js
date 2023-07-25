@@ -29,16 +29,16 @@ export const Home = () => {
   }
   return (
     <>
-      <Header nomeUsuario={jsonData.usuarioProprietario.nomeUsuario} />
+      <Header usuarios={jsonData.usuarios} titulo={jsonData.nome} nomeUsuario = {jsonData.usuarioProprietario.nomeUsuario} />
       <div className="home">
         {jsonData.arquivos.length > 0 ? <ListaArquivo /> : <FileUploadDemo />}
 
         <div className="part-2-home">
-          <PeopleAcess usuarios={jsonData.usuarios} />
+          {/* <PeopleAcess usuarios={jsonData.usuarios} />
           <CopiarColarComponente
             rota_compartilhamento={jsonData.rota_compartilhamento}
-          />
-          <FileUploadBasic />
+          /> */}
+          {/* <FileUploadBasic /> */}
         </div>
       </div>
     </>

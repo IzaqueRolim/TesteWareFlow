@@ -9,7 +9,7 @@ export const ArquivoComponent = ({ nomeArquivo, tipo }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    setIsHovered(!isHovered);
   };
   const handleMouseLeave = () => {
     setIsHovered(false);
@@ -42,9 +42,8 @@ export const ArquivoComponent = ({ nomeArquivo, tipo }) => {
 
   return (
     <div
-      className="containerPasta"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      className="containerArquivo"
+      onClick={handleMouseEnter}
     >
       <div className="divArquivo">
         <img src={iconArquivo} />

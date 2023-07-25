@@ -35,7 +35,7 @@ export const FormsCadastro = (props) => {
     <Paper
       elevation={3}
       sx={{
-        height: "60vh",
+        height: "55vh",
         width: "25vw",
         display: "flex",
         flexDirection: "column",

@@ -53,9 +53,22 @@
 .m-0 {
   color: #5e2d95;
 }
-.people {
+.people{
   /* margin-right: 3em; */
+  transition: all 0.5s;
   padding: 0 1em;
+  position: fixed;
+  top: 100px; /* Posição vertical a partir do topo */ 
+  right: 70px;
+  background-color: aliceblue;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra para destacar a div */
+  z-index: 999;
+}
+.people.focus{
+  transition: all 0.5s;
 }
 .lista_pessoas {
   margin-top: 1em;

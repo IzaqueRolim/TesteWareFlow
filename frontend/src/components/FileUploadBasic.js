@@ -29,7 +29,7 @@ export class FileUploadBasic extends Component {
             <div>
                 <Toast ref={(el) => { this.toast = el; }}></Toast>
                 <div className="UploadBasic">
-                    <FileUpload mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize={1000000} onUpload={this.onBasicUploadAuto} auto chooseLabel="Adicionar Arquivo" />
+                    <FileUpload mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize={1000000} onUpload={this.onBasicUploadAuto} auto chooseLabel="Novo arquivo" />
                 </div>
             </div>
         )

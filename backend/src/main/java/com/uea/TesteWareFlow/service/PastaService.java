@@ -36,11 +36,12 @@ public class PastaService {
             List<Usuario>listUsuario = new ArrayList<>();
             listUsuario.add(usuario);
             pasta.setUsuarios(listUsuario);
-
+            usuario.getPastas().add(pasta);
     
             Pasta _pasta = pastaRepository.save(pasta);
-
-            System.out.println(_pasta.getUsuarios());
+           // Usuario _usuario = usuarioRepository.save(usuario);
+            System.out.println(_pasta);
+            //System.out.println(_usuario);
             return ResponseEntity.ok(PastaDto.transformaEmDTO(_pasta));
     }
 

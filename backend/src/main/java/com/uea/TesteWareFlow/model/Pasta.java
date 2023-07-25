@@ -5,6 +5,8 @@ import com.uea.TesteWareFlow.dto.PastaDto;
 import com.uea.TesteWareFlow.dto.UsuarioDto;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.rmi.server.UID;
 import java.time.LocalDate;
@@ -15,7 +17,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "tb_pasta")
 public class Pasta {
     @Id
@@ -27,8 +30,8 @@ public class Pasta {
     private String rota_compartilhamento;
 
 
-    @ManyToMany(mappedBy = "pastas",cascade = {CascadeType.ALL},fetch= FetchType.EAGER)
-    @JsonIgnore
+    @ManyToMany(mappedBy = "pastas",cascade = {CascadeType.MERGE},fetch= FetchType.EAGER)
+    @JsonBackReference
     List<Usuario> usuarios;
 
     @OneToMany(mappedBy = "pasta")

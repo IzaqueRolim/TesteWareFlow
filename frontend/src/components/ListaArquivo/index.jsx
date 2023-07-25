@@ -1,5 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import { ArquivoComponent } from "../ArquivoComponent";
+
+import { FileUploadBasic } from "../../components/FileUploadBasic";
 import './style.css'
 
 export const ListaArquivo = ()=>{
@@ -28,7 +30,7 @@ export const ListaArquivo = ()=>{
             {jsonData.arquivos.map((element,index)=>(
                 <ArquivoComponent key = {index} nomeArquivo={element.nome} tipo ={element.tipo}/>
             ))}
-           
+            <FileUploadBasic />
         </div>
     );
 }

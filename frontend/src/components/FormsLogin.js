@@ -29,7 +29,7 @@ export const FormsLogin = () => {
     <Paper
       elevation={3}
       sx={{
-        height: "60vh",
+        height: "50vh",
         width: "25vw",
         display: "flex",
         flexDirection: "column",

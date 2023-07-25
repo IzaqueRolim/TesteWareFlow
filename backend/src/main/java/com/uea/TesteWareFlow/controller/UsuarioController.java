@@ -55,6 +55,8 @@ public class UsuarioController {
         Optional<Pasta> pastaEncontrada     = pastaRepository.findById(usuarioPastaDTO.getIdPasta());
         Usuario usuarioEncontrado  = usuarioRepository.findById(usuarioPastaDTO.getIdUsuario()).get();
 
+        System.out.println(pastaEncontrada.get());
+        System.out.println(usuarioEncontrado);
 
         if(usuarioEncontrado == null || pastaEncontrada==null){
             return ResponseEntity.status(500).body("Usuário ou pasta não encontradas");

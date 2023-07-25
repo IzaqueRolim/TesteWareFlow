@@ -15,12 +15,16 @@
   justify-content: space-between;
   align-items: center;
   /* background-color: aqua; */
-  width: 100px;
+  max-width: 400px;
   margin-right: 20px;
+}
+.header-icones:hover{
+  cursor: pointer;
 }
 .pi-sign-out {
   font-size: 20em;
   width: 40px;
+  margin-left: 1vw;
 }
 .pi-sign-out:hover {
   cursor: pointer;
