@@ -75,18 +75,17 @@ export const Home = () => {
     <>
       <Header usuarios={jsonData.usuarios} titulo={jsonData.nomePasta}/>
       <div className="home">
-        {jsonData.arquivos.length > 0 ? <ListaArquivo arquivos={jsonData.arquivos} /> 
-        
-        :
-        <form className="upload-form" onSubmit={handleUpload} enctype="multipart/form-data">    
-          {/* <FileUploadDemo /> */}
-          <label htmlFor="fileInput" className="file-input-label">
-            Escolher arquivo
-            <input type="file" id="fileInput" onChange={handleFile} />
-          </label>
-          <span>Arraste e solte seus arquivos aqui</span>
-          <button>Upload</button>
-        </form>
+        {jsonData.arquivos.length > 0 ? 
+            <ListaArquivo arquivos={jsonData.arquivos} /> :
+
+            <form className="upload-form" onSubmit={handleUpload} enctype="multipart/form-data">    
+              <label htmlFor="fileInput" className="file-input-label">
+                Escolher arquivo
+                <input type="file" id="fileInput" onChange={handleFile} />
+              </label>
+              <span>Arraste e solte seus arquivos aqui</span>
+              <button>Upload</button>
+            </form>
           }
 
         <div className="part-2-home">
