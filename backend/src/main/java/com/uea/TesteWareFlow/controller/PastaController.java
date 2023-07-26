@@ -58,14 +58,17 @@ public class PastaController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("{id}")
-    private ResponseEntity<?> deletarPasta(@PathVariable UUID id){
-        if(pastaRepository.existsById(id)){
-            pastaRepository.deleteById(id);
-            return ResponseEntity.ok("Deletado com sucesso");
+    @DeleteMapping("/{id}")
+    private ResponseEntity<Void> deletarPasta(@RequestBody UsuarioPastaDTO usuarioPastaDTO){
+        Pasta pasta = pastaRepository.findById(usuarioPastaDTO.getIdPasta()).get();
+        if(pastaRepository.existsById(usuarioPastaDTO.getIdPasta())){
+            Usuario usuario = usuarioRepository.findByEmail(usuarioPastaDTO.getEmailUsuario());
+            usuario.getPastas().remove(pasta);
+            usuarioRepository.save(usuario);
+            return ResponseEntity.noContent().build();
         }
 
-        return  ResponseEntity.notFound().build();
+        return ResponseEntity.notFound().build();
     }
 
     @PutMapping("adicionarUsuario")

@@ -13,7 +13,11 @@ export const FormsLogin = () => {
   const [senha, setSenha] = useState("");
   const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
- 
+  
+  const [isVisible, setIsVisible] = useState(true);
+
+  // Efeito que esconde o texto após 3 segundos
+
 
   async function login() {  
     const data = {
@@ -35,9 +39,13 @@ export const FormsLogin = () => {
         console.log(data);
         if(data.id_usuario!=undefined){
           localStorage.setItem('idUsuario',data.id_usuario);
-          
           navigate("/pastas");
         }
+       
+        setMsg("Email ou Senha incorretos")
+        const timer = setTimeout(() => {
+          setMsg("")
+        }, 2300); 
       })
     } catch (error) {
       setMsg("Usuario ou Senha incorretos")
@@ -68,7 +76,7 @@ export const FormsLogin = () => {
       <h2>Login</h2>
       <div>
         <span className="p-input-icon-left">
-          <i className="pi pi-user" />
+          <i className="pi pi-envelope" />
           <InputText
             value={email}
             onChange={(e) => setEmail(e.target.value)}
