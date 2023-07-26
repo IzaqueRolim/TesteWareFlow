@@ -34,7 +34,7 @@ export const PastaComponent = (props) => {
       .then(data => {
         console.log(data);
         setModalEditarIsOpen(false);
-        window.location.href = window.location.href
+        //window.location.href = window.location.href
       })
     } catch (error) {
       console.log("teve erro",error);

@@ -70,10 +70,10 @@ public class PastaController {
 
     @PutMapping("adicionarUsuario")
     private ResponseEntity<PastaDto> adicionarUsuarioAPasta(@RequestBody UsuarioPastaDTO usuarioPastaDTO){
-        Usuario usuarioEncontrado = usuarioRepository.findById(usuarioPastaDTO.getIdUsuario()).orElseThrow(() -> new EntityNotFoundException("Usuario não encontrada com o ID fornecido."));
-        Pasta     pastaEncontrada     = pastaRepository.findById(usuarioPastaDTO.getIdPasta()).orElseThrow(() -> new EntityNotFoundException("Pasta não encontrada com o ID fornecido."));;
+        Usuario usuarioEncontrado = usuarioRepository.findByEmail(usuarioPastaDTO.getEmailUsuario());
+        Pasta   pastaEncontrada   = pastaRepository.findById(usuarioPastaDTO.getIdPasta()).orElseThrow(() -> new EntityNotFoundException("Pasta não encontrada com o ID fornecido."));;
 
-        System.out.println(usuarioEncontrado);
+        System.out.println(usuarioEncontrado.getId_usuario());
         System.out.println(pastaEncontrada);
 
         return pastaService.adicionarUsuarioAPasta(pastaEncontrada,usuarioEncontrado);

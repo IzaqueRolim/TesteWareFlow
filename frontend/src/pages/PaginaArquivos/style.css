@@ -7,8 +7,57 @@
 }
 .home {
   width: 100%;
-   
   display: flex;
   justify-content: center;
-  
+}
+/* Estilos para o formulário de upload */
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  width: 500px;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+/* Estilos para o input de arquivo */
+.upload-form input[type="file"] {
+  display: none; /* Oculta o input de arquivo nativo */
+}
+
+.file-input-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #9858e2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.file-input-label:hover {
+  background-color: #9858e2;
+}
+
+/* Estilos para o botão de upload */
+.upload-form button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #5e2d95;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-form button:hover {
+  background-color: #5e2d95;
 }

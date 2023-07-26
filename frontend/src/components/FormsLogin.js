@@ -5,9 +5,10 @@ import { Paper } from "@mui/material";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { underscore } from "i/lib/methods";
 
 export const FormsLogin = () => {
-  const [value3, setValue3] = useState("");
+  const [msg,setMsg] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [checked, setChecked] = useState(false);
@@ -29,14 +30,17 @@ export const FormsLogin = () => {
           "Content-Type": "application/json",
         },
       })
-      .then(response => response.json())
+      .then(response =>  response.json())
       .then(data => {
-        // Aqui você tem acesso aos dados do corpo da resposta em formato JSON
         console.log(data);
-        localStorage.setItem('idUsuario',data.id_usuario);
-        navigate("/pastas");
+        if(data.id_usuario!=undefined){
+          localStorage.setItem('idUsuario',data.id_usuario);
+          
+          navigate("/pastas");
+        }
       })
     } catch (error) {
+      setMsg("Usuario ou Senha incorretos")
       console.log("teve erro",error);
     }
   }
@@ -68,7 +72,7 @@ export const FormsLogin = () => {
           <InputText
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Login"
+            placeholder="Email"
           />
         </span>
       </div>
@@ -92,6 +96,7 @@ export const FormsLogin = () => {
         />
         <label htmlFor="binary">Manter conectado</label>
       </div>
+      <span className="respostaLogin">{msg}</span>
       <Button
         label="Entrar"
         aria-label="Submit"

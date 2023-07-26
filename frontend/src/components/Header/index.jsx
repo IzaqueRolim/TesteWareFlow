@@ -17,6 +17,7 @@ export const Header = (props) => {
     localStorage.setItem("id_pasta","")
     navigate("/");
   };
+  
 
   return (
     <div className="header">
@@ -31,7 +32,8 @@ export const Header = (props) => {
         {props.titulo}
       </Typography>
       <div
-      onClick={()=>setIsHovered(!isHovered)}
+      onMouseEnter={()=>setIsHovered(true)}
+      onMouseLeave={()=>setIsHovered(false)}
       className="header-icones">
         {/* <Foto color={"purple"}>{primeiraLetra}</Foto> */}
         {
@@ -47,7 +49,10 @@ export const Header = (props) => {
         ></span>
         {
           isHovered?
-          <PeopleAcess nomeClasse = {isHovered?"people":"people"}usuarios={props.usuarios} /> :
+          <PeopleAcess 
+            onMouseEnter={()=>setIsHovered(true)}
+            onMouseLeave={()=>setIsHovered(false)} 
+            nomeClasse = {isHovered?"people":"people"}usuarios={props.usuarios} /> :
           <></>
         }
       </div>
