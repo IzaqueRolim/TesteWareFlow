@@ -27,18 +27,14 @@ export const FileUploadDemo = () => {
     console.log("Upload",event);
     const formData = new FormData();
     formData.append("file", event.files[0]); 
-
-
-    const reader = new FileReader();
-
-    reader.onload = async ({ target }) => {
+    
 
       const url = `http://localhost:8080/arquivos/upload/${localStorage.getItem("id_pasta")}`;
 
       try {
         await fetch(url, {
           method: "POST",
-          body: JSON.stringify(formData),
+          body: formData,
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -51,8 +47,7 @@ export const FileUploadDemo = () => {
       } catch (error) {
         console.log("teve erro",error);
       }
-    }
-    reader.readAsText(file);
+  
   };
 
   return (
@@ -79,7 +74,8 @@ export const FileUploadDemo = () => {
             </div>
           }
         />
+        
       </div>
     </div>
   );
-};
+}
