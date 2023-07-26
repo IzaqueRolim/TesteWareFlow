@@ -13,30 +13,46 @@ export const FileUploadDemo = () => {
     console.log(event)
   };
 
+  const handleFileChange = (e) => {
+    
+    if (e.target.files.length) {
+      const inputFile = e.target.files[0];
+
+      setFile(inputFile);
+    }
+  };
+
 
   const onUpload = async(event) => {
     console.log("Upload",event);
     const formData = new FormData();
-    formData.append("file", event); 
+    formData.append("file", event.files[0]); 
 
-    const url = `http://localhost:8080/arquivos/upload/${localStorage.getItem("id_pasta")}`;
 
-    try {
-      await fetch(url, {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-       // window.location.href = window.location.href
-      })
-    } catch (error) {
-      console.log("teve erro",error);
+    const reader = new FileReader();
+
+    reader.onload = async ({ target }) => {
+
+      const url = `http://localhost:8080/arquivos/upload/${localStorage.getItem("id_pasta")}`;
+
+      try {
+        await fetch(url, {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        // window.location.href = window.location.href
+        })
+      } catch (error) {
+        console.log("teve erro",error);
+      }
     }
+    reader.readAsText(file);
   };
 
   return (
@@ -51,6 +67,7 @@ export const FileUploadDemo = () => {
         <FileUpload
           name="demo[]"
           onUpload={onFileSelect}
+          onChange={handleFileChange}
           customUpload uploadHandler={onUpload}
           multiple
           accept="image/*"
