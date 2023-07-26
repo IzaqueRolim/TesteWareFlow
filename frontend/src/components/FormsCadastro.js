@@ -3,6 +3,7 @@ import { InputText } from "primereact/inputtext";
 import { Paper } from "@mui/material";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
+import { SHA1 } from 'crypto-js';
 import axios from "../axios";
 
 export const FormsCadastro = (props) => {
@@ -28,11 +29,13 @@ export const FormsCadastro = (props) => {
 
   async function postUsuario(e) {
     e.preventDefault();
-
+    const senhaCriptografada = SHA1(senha).toString();
+    console.log(senhaCriptografada);
+  
     const data = {
       nomeUsuario: nomeUsuario,
       email: email,
-      senha: senha,
+      senha: senhaCriptografada,
       pasta:[],
       roles:null
     }
@@ -67,7 +70,7 @@ export const FormsCadastro = (props) => {
     <Paper
       elevation={3}
       sx={{
-        height: "60vh",
+        height: "64vh",
         width: "25vw",
         display: "flex",
         flexDirection: "column",

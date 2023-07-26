@@ -6,6 +6,7 @@ import com.uea.TesteWareFlow.repository.ArquivoRepository;
 import com.uea.TesteWareFlow.repository.PastaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -64,7 +65,7 @@ public class ArquivoService {
         }
     }
 
-    public ResponseEntity<Resource> baixarArquivos(String file){
+    public ResponseEntity<?> baixarArquivos(String file) throws IOException {
         String caminhoDocumentos = System.getProperty("user.home") + "/Documents/WareFlowArquivos/" ;
         Path arquivoPath = Paths.get(caminhoDocumentos, file);
 
@@ -83,7 +84,7 @@ public class ArquivoService {
             System.out.println(contentType);
             return ResponseEntity.ok()
                     .contentType(MediaType.parseMediaType(contentType))
-                    .body(resource);
+                    .body(new InputStreamResource(resource.getInputStream()));
         }
         else {
             return ResponseEntity.notFound().build();
@@ -96,18 +97,20 @@ public class ArquivoService {
         switch (extensaoArquivo) {
             //TROCAR ESSE RETORNO PELO LINK DO ICONE DO TIPO DE ARQUIVO
             case "pdf":
-                return "PDF";
+                return "pdf";
             case "png":
-                return "PNG";
+                return "png";
             case "jpg":
             case "jpeg":
-                return "JPEG";
-            case "zip":
-                return"zip";
+                return "jpeg";
+            case "txt":
+                return"txt";
             case "docx":
                 return"docx";
             case "pptx":
                 return"pptx";
+            case "rar":
+                return "rar";
             default:
                 return "Tipo de arquivo desconhecido";
         }

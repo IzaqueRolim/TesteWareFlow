@@ -56,11 +56,12 @@ export const ListaPasta = () => {
       })
       .then(response => response.json())
       .then(data => {
-        console.log(data.pastas)
+        console.log(data)
         if(data.pastas==undefined){
           navigate("/");
         }
         setJsonData(data);
+        localStorage.setItem("emailUsuario",data.email);
       })
     } catch (error) {
       console.log("teve erro",error);
@@ -106,6 +107,7 @@ export const ListaPasta = () => {
           <PastaComponent
             key={element.id_pasta}
             nomePasta={element.nomePasta}
+            
             id={element.id_pasta}
           />
         ))}

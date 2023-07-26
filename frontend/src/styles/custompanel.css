@@ -55,16 +55,16 @@
 }
 .people{
   /* margin-right: 3em; */
-  transition: all 0.5s;
+  transition: all 1s;
   padding: 0 1em;
   position: fixed;
-  top: 60px; /* Posição vertical a partir do topo */ 
+  top: 55px;  
   right: 70px;
   background-color: aliceblue;
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra para destacar a div */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
   z-index: 999;
 }
 .people.focus{
@@ -86,19 +86,35 @@
   align-items: center;
 }
 .adicionarUsuario{
-  margin-top: 3vh;
-  height: 5vh;
+  margin-top: 5vh;
+  height: 6vh;
   display: flex;
   align-items: center;
+  
 }
 .adicionarUsuario>button{
-  margin-left: 3px;
+  margin-left:10px;
   height: 100%;
-  
+  width: 30%;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.adicionarUsuario>button:hover{
+  cursor: pointer;
+  background-color: rgb(34, 33, 33);
+  transition: all 0.2s;
 }
 
 .respostaLogin{
   color: rgb(171, 31, 31);
   font-size: 14px;
   text-align: center;
+}
+
+.pessoa{
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
 }

@@ -58,7 +58,7 @@ public class PastaController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("")
     private ResponseEntity<Void> deletarPasta(@RequestBody UsuarioPastaDTO usuarioPastaDTO){
         Pasta pasta = pastaRepository.findById(usuarioPastaDTO.getIdPasta()).get();
         if(pastaRepository.existsById(usuarioPastaDTO.getIdPasta())){

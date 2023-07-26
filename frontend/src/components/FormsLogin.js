@@ -4,6 +4,7 @@ import { Checkbox } from "primereact/checkbox";
 import { Paper } from "@mui/material";
 import { Button } from "primereact/button";
 import { useNavigate } from "react-router-dom";
+import { SHA1 } from 'crypto-js';
 import axios from "axios";
 import { underscore } from "i/lib/methods";
 
@@ -20,9 +21,10 @@ export const FormsLogin = () => {
 
 
   async function login() {  
+    const senhaCriptografada = SHA1(senha).toString();
     const data = {
       email: email,
-      senha: senha
+      senha: senhaCriptografada
     }
     console.log(data)
 
@@ -55,16 +57,14 @@ export const FormsLogin = () => {
 
 
   const handleClickLogin = () => {
- 
     login();
-    
   };
 
   return (
     <Paper
       elevation={3}
       sx={{
-        height: "55vh",
+        height: "60vh",
         width: "25vw",
         display: "flex",
         flexDirection: "column",

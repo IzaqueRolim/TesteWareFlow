@@ -1,11 +1,11 @@
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import React, { useState,useEffect } from "react";
 import { Foto } from "./Foto";
 import { Pessoa } from "./Pessoa";
 import { InputText } from "primereact/inputtext";
 
+
 export const PeopleAcess = (props) => {
-  const [jsonData, setJsonData] = useState(null);
   const [email,setEmail] = useState("");
 
   async function adicionarUsuario() {
@@ -23,11 +23,19 @@ export const PeopleAcess = (props) => {
           "Content-Type": "application/json",
         },
       })
-      .then(response => response.json())
+      .then(response =>{
+        console.log(response)
+        window.location.href = window.location.href
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+      })
       .then(data => {
         // Aqui você tem acesso aos dados do corpo da resposta em formato JSON
         console.log(data);
-       // window.location.href = window.location.href
+        if(data.id_pasta!=undefined){
+           
+        }
       })
     } catch (error) {
       console.log("teve erro",error);
@@ -46,27 +54,15 @@ export const PeopleAcess = (props) => {
           <Pessoa key={index} nome={element.nomeUsuario} />
         ))}
 
-        <div>
+        <div className="adicionarUsuario">
           <InputText
-              style={{width:"65%", marginTop:"4vh"}}
+              style={{width:"65%", marginTop:"0vh", height:"100%"}}
               name="nomeUsuario"
-              onChange={(event)=>{}}
-              placeholder="Pessoa"
-              />   
-            <Button
-              label="Adicionar"
-              aria-label="Submit"
-              onClick={()=>{}}
-              style={{ width: "30%",marginLeft:"10px", paddingLeft:"5px",paddingRight:"5px  "}}></Button>
-        </div>
-      </div>
-      <div className="adicionarUsuario">
-        <InputText
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(event)=>{setEmail(event.target.value)}}
               placeholder="Email"
-            />
-        <button onClick={adicionarUsuario}>Adicionar</button>
+              />   
+            <button onClick={adicionarUsuario}>Adicionar</button>
+        </div>
       </div>
     </div>
   );

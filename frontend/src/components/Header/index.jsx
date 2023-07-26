@@ -21,32 +21,38 @@ export const Header = (props) => {
 
   return (
     <div className="header">
-      <Typography
-        variant="h1"
-        sx={{
-          color: "#5E2D95",
-          fontSize: 22,
-          marginLeft: "20px",
-        }}
-      >
-        {props.titulo}
-      </Typography>
+      <div onClick={()=>{navigate("/pastas")}}>
+        <Typography
+          variant="h1"
+          sx={{
+            color: "#5E2D95",
+            fontSize: 22,
+            marginLeft: "20px",
+            cursor:"pointer"
+          }}
+          >
+          {props.titulo}
+          
+        </Typography>
+      </div>
+      
+      {props.isPageFile?
       <div
-      onMouseEnter={()=>setIsHovered(true)}
-      onMouseLeave={()=>setIsHovered(false)}
-      className="header-icones">
-        {/* <Foto color={"purple"}>{primeiraLetra}</Foto> */}
-        {
-          props.usuarios.length>0?
-          props.usuarios.map((element,index)=>(
-            <Foto color={"#5e2d95"} key={index}>{element.nomeUsuario}</Foto>
-          )):<></>
-        }
-        <span
-          class="pi pi-sign-out"
-          style={{ fontSize: "22px", color: "#5E2D95" }}
-          onClick={logout}
-        ></span>
+        onMouseEnter={()=>setIsHovered(true)}
+        onMouseLeave={()=>setIsHovered(false)}
+        className="header-icones">
+          {/* <Foto color={"purple"}>{primeiraLetra}</Foto> */}
+          {
+              props.usuarios.length>0?
+              props.usuarios.map((element,index)=>(
+                <Foto color={"#2c3ea8"} key={index}>{element.nomeUsuario}</Foto>
+              )):<></>
+          }
+          <span
+            class="pi pi-sign-out"
+            style={{ fontSize: "22px", color: "#5E2D95" }}
+            onClick={logout}
+          ></span>
         {
           isHovered?
           <PeopleAcess 
@@ -55,7 +61,8 @@ export const Header = (props) => {
             nomeClasse = {isHovered?"people":"people"}usuarios={props.usuarios} /> :
           <></>
         }
-      </div>
+      </div>:<>
+      </>}
     </div>
   );
 };

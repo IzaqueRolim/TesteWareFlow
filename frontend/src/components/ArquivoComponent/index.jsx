@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import iconPDF from "../../assets/iconPDF.png";
 import iconDOCX from "../../assets/iconDOCX.png";
 import iconPPTX from "../../assets/iconPPTX.png";
+import iconTXT from '../../assets/iconeTXT.png';
+import iconIMG from '../../assets/iconIMG.png';
+import iconZIP from '../../assets/iconeZIP.png'
+import iconeDefault from '../../assets/iconArquivo.png'
 
 import "./style.css";
 
@@ -24,9 +28,30 @@ export const ArquivoComponent = ({ nomeArquivo, tipo }) => {
     console.log("Excluir o arquivo:");
   };
 
-  let iconArquivo = iconDOCX;
+  const downloadArquivo = () =>{
+    const fileUrl = `http://localhost:8080/arquivos/download/${nomeArquivo}`;
 
-  switch (tipo) {
+    fetch(fileUrl)
+      .then(response => response.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', nomeArquivo);
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode.removeChild(link);
+      })
+      .catch(error => {
+        console.error('Erro ao baixar o arquivo:', error);
+      });
+
+
+  }
+
+  let iconArquivo = iconeDefault;
+
+  switch (tipo.toLowerCase()) {
     case "pdf":
       iconArquivo = iconPDF;
       break;
@@ -36,9 +61,26 @@ export const ArquivoComponent = ({ nomeArquivo, tipo }) => {
     case "pptx":
       iconArquivo = iconPPTX;
       break;
+    case "txt":
+      iconArquivo = iconTXT;
+      break;
+    case "png":
+      iconArquivo = iconIMG;
+      break;
+    case "zip":
+      iconArquivo = iconZIP;
+      break;
+    case "rar":
+      iconArquivo = iconZIP;
+      break;
     default:
       break;
   }
+
+  const handleRedirect = () => {
+    //window.location.href = `http://localhost:8080/arquivos/download/${nomeArquivo}`;
+    //window.open(`http://localhost:8080/arquivos/download/${nomeArquivo}`);
+  };
 
   return (
     <div
@@ -51,7 +93,7 @@ export const ArquivoComponent = ({ nomeArquivo, tipo }) => {
       </div>
       {isHovered && (
         <div className="buttons">
-          <button className="botaoEscondido" onClick={handleDownload}>
+          <button className="botaoEscondido" onClick={downloadArquivo}>
             {" "}
             <span class="pi pi-download"></span>
           </button>

@@ -2,6 +2,7 @@ package com.uea.TesteWareFlow.controller;
 
 import com.uea.TesteWareFlow.model.Arquivo;
 import com.uea.TesteWareFlow.model.Pasta;
+import com.uea.TesteWareFlow.model.Usuario;
 import com.uea.TesteWareFlow.repository.ArquivoRepository;
 import com.uea.TesteWareFlow.repository.PastaRepository;
 import com.uea.TesteWareFlow.service.ArquivoService;
@@ -56,7 +57,7 @@ public class ArquivoController {
     }
 
     @GetMapping(value = "/download/{file}")
-    private ResponseEntity<Resource> downloadFile(@PathVariable String file){
+    private ResponseEntity<?> downloadFile(@PathVariable String file) throws IOException {
         return arquivoService.baixarArquivos(file);
     }
 
@@ -70,6 +71,16 @@ public class ArquivoController {
          Optional<Arquivo> arquivoEncontrado = arquivoRepository.findById(id);
 
          return arquivoEncontrado.get();
+    }
+    @DeleteMapping("{id}")
+    private ResponseEntity<?> deletarArquivo(@PathVariable UUID id){
+        if(arquivoRepository.existsById(id)){
+            arquivoRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.notFound().build();
+
     }
 
 }

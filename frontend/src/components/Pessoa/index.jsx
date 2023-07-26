@@ -6,7 +6,7 @@ export const Pessoa = ({ nome }) => {
   return (
     <div className="pessoa">
       <Foto>{nome}</Foto>
-      <span>{nome}</span>
+      <span>{nome.slice(0,13)+"..."}</span>
     </div>
   );
 };

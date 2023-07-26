@@ -3,7 +3,7 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { useState } from "react";
 
-export const ModalExcluir = ({ setModalExcluirIsOpen, pasta }) => {
+export const ModalExcluir = ({ setModalExcluirIsOpen, pasta, funcaoExcluir }) => {
   const [nomePasta, setNomePasta] = useState("");
   return (
     <div className="modalPasta">
@@ -21,13 +21,13 @@ export const ModalExcluir = ({ setModalExcluirIsOpen, pasta }) => {
 
           <span
             className="p-input-icon-left"
-            onClick={() => setModalExcluirIsOpen(false)}
+            onClick={()=>{setModalExcluirIsOpen(false)}}
           >
             <i className="pi pi-times" />
           </span>
         </div>
         <div className="containerInput">
-          <Button label="Excluir" aria-label="Submit" />
+          <Button label="Excluir" aria-label="Submit" onClick={funcaoExcluir}/>
         </div>
       </div>
     </div>

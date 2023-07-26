@@ -47,7 +47,7 @@ export const Home = () => {
     formData.append("file",file);
 
    
-    const url = `http://localhost:8080/arquivo/upload/${localStorage.getItem("id_pasta")}`
+    const url = `http://localhost:8080/arquivos/upload/${localStorage.getItem("id_pasta")}`
     console.log(url)
     try {
     await fetch(url, {
@@ -60,6 +60,9 @@ export const Home = () => {
       .then(response => response.json())
       .then(data => {
       //  setJsonData(data);
+        if(data.id_arquivo!=undefined){
+          window.location.href = window.location.href
+        }
         console.log(data)
       })
     } catch (error) {
@@ -71,13 +74,13 @@ export const Home = () => {
   if (!jsonData) {
     return <div>Carregando...</div>;
   }
+  
   return (
     <>
-      <Header usuarios={jsonData.usuarios} titulo={jsonData.nomePasta}/>
+      <Header isPageFile={true} usuarios={jsonData.usuarios} titulo={jsonData.nomePasta}/>
       <div className="home">
         {jsonData.arquivos.length > 0 ? 
             <ListaArquivo arquivos={jsonData.arquivos} /> :
-
             <form className="upload-form" onSubmit={handleUpload} enctype="multipart/form-data">    
               <label htmlFor="fileInput" className="file-input-label">
                 Escolher arquivo

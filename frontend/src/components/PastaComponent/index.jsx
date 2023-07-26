@@ -20,7 +20,7 @@ export const PastaComponent = (props) => {
       nomePasta: nomeEditadoPasta
     }
     console.log(data)
-    const url = `http://localhost:8080/pasta/${localStorage.getItem("id_pasta")}`;
+    const url = `http://localhost:8080/pasta/${props.id}`;
 
     try {
       await fetch(url, {
@@ -34,12 +34,42 @@ export const PastaComponent = (props) => {
       .then(data => {
         console.log(data);
         setModalEditarIsOpen(false);
-        //window.location.href = window.location.href
+        window.location.href = window.location.href
       })
     } catch (error) {
       console.log("teve erro",error);
     }
   }
+
+  async function deletar(){
+    const data = {
+      emailUsuario: localStorage.getItem("emailUsuario"),
+      idPasta: props.id
+    }
+    console.log(data)
+    const url = `http://localhost:8080/pasta`;
+
+    try {
+      await fetch(url, {
+        method: "DELETE",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        console.log(response)
+        setModalExcluirIsOpen(false);
+        window.location.href = window.location.href
+      })
+    } catch (error) {
+      console.log("teve erro",error);
+    }
+  }
+
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -55,7 +85,7 @@ export const PastaComponent = (props) => {
   const handleDelete = () => {
     // Lógica para excluir a pasta
     setModalExcluirIsOpen(true);
-    console.log("Excluir a pasta:");
+    
   };
 
   const handlePasta = () => {
@@ -100,6 +130,7 @@ export const PastaComponent = (props) => {
         <ModalExcluir
           setModalExcluirIsOpen={setModalExcluirIsOpen}
           pasta={props.nomePasta}
+          funcaoExcluir={()=>{deletar()}}
         />
       ) : (
         <></>
