@@ -52,7 +52,7 @@ export const FileUploadDemo = () => {
 
   return (
     <div className="card_file">
-      <div className="file_upload">
+      <form className="file_upload">
         <Typography
           variant="h2"
           sx={{ fontSize: 35, fontWeight: "bold", marginBottom: 2 }}
@@ -68,14 +68,14 @@ export const FileUploadDemo = () => {
           accept="image/*"
           maxFileSize={1000000}
           chooseLabel="Escolher"
+          
           emptyTemplate={
             <div className="ghost">
               <p className="m-0">Arraste e solte seus arquivos aqui.</p>
             </div>
           }
         />
-        
-      </div>
+      </form>
     </div>
   );
 }

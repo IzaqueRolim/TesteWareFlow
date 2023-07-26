@@ -17,6 +17,7 @@ export const Header = (props) => {
     localStorage.setItem("id_pasta","")
     navigate("/");
   };
+  
 
   return (
     <div className="header">
@@ -48,7 +49,10 @@ export const Header = (props) => {
         ></span>
         {
           isHovered?
-          <PeopleAcess setIsHoveredOpen={()=>setIsHovered(false)} setIsHoveredClose={()=>setIsHovered(true)} nomeClasse = {isHovered?"people":"people"}usuarios={props.usuarios} /> :
+          <PeopleAcess 
+            onMouseEnter={()=>setIsHovered(true)}
+            onMouseLeave={()=>setIsHovered(false)} 
+            nomeClasse = {isHovered?"people":"people"}usuarios={props.usuarios} /> :
           <></>
         }
       </div>

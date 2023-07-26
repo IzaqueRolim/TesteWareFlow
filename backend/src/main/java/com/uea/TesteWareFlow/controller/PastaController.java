@@ -58,22 +58,25 @@ public class PastaController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("{id}")
-    private ResponseEntity<?> deletarPasta(@PathVariable UUID id){
-        if(pastaRepository.existsById(id)){
-            pastaRepository.deleteById(id);
-            return ResponseEntity.ok("Deletado com sucesso");
+    @DeleteMapping("/{id}")
+    private ResponseEntity<Void> deletarPasta(@RequestBody UsuarioPastaDTO usuarioPastaDTO){
+        Pasta pasta = pastaRepository.findById(usuarioPastaDTO.getIdPasta()).get();
+        if(pastaRepository.existsById(usuarioPastaDTO.getIdPasta())){
+            Usuario usuario = usuarioRepository.findByEmail(usuarioPastaDTO.getEmailUsuario());
+            usuario.getPastas().remove(pasta);
+            usuarioRepository.save(usuario);
+            return ResponseEntity.noContent().build();
         }
 
-        return  ResponseEntity.notFound().build();
+        return ResponseEntity.notFound().build();
     }
 
     @PutMapping("adicionarUsuario")
     private ResponseEntity<PastaDto> adicionarUsuarioAPasta(@RequestBody UsuarioPastaDTO usuarioPastaDTO){
-        Usuario usuarioEncontrado = usuarioRepository.findById(usuarioPastaDTO.getIdUsuario()).orElseThrow(() -> new EntityNotFoundException("Usuario não encontrada com o ID fornecido."));
-        Pasta     pastaEncontrada     = pastaRepository.findById(usuarioPastaDTO.getIdPasta()).orElseThrow(() -> new EntityNotFoundException("Pasta não encontrada com o ID fornecido."));;
+        Usuario usuarioEncontrado = usuarioRepository.findByEmail(usuarioPastaDTO.getEmailUsuario());
+        Pasta   pastaEncontrada   = pastaRepository.findById(usuarioPastaDTO.getIdPasta()).orElseThrow(() -> new EntityNotFoundException("Pasta não encontrada com o ID fornecido."));;
 
-        System.out.println(usuarioEncontrado);
+        System.out.println(usuarioEncontrado.getId_usuario());
         System.out.println(pastaEncontrada);
 
         return pastaService.adicionarUsuarioAPasta(pastaEncontrada,usuarioEncontrado);

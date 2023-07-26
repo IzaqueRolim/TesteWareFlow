@@ -27,4 +27,6 @@ public interface PastaRepository extends JpaRepository<Pasta, UUID> {
 
     @Query(value = "INSERT INTO usuario_pasta VALUES(:id_usuario,:id_pasta)",nativeQuery = true)
     void adicionarUsuarioPasta(UUID id_usuario,UUID id_pasta);
+
+    Pasta findByNomePasta(String nomePasta);
 }

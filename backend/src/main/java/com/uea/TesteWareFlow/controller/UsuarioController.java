@@ -68,7 +68,7 @@ public class UsuarioController {
     @PostMapping(value = "/adicionarPasta")
     private ResponseEntity<?> criarPastaNaContaDoUsuario(@RequestBody UsuarioPastaDTO usuarioPastaDTO){
         Optional<Pasta> pastaEncontrada     = pastaRepository.findById(usuarioPastaDTO.getIdPasta());
-        Usuario usuarioEncontrado  = usuarioRepository.findById(usuarioPastaDTO.getIdUsuario()).get();
+        Usuario usuarioEncontrado  = usuarioRepository.findByEmail(usuarioPastaDTO.getEmailUsuario());
 
         System.out.println(pastaEncontrada.get());
         System.out.println(usuarioEncontrado);

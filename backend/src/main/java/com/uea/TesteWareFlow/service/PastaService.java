@@ -39,18 +39,19 @@ public class PastaService {
             usuario.getPastas().add(pasta);
     
             Pasta _pasta = pastaRepository.save(pasta);
-           // Usuario _usuario = usuarioRepository.save(usuario);
+
             System.out.println(_pasta);
-            //System.out.println(_usuario);
+
             return ResponseEntity.ok(PastaDto.transformaEmDTO(_pasta));
     }
 
     public ResponseEntity<PastaDto> adicionarUsuarioAPasta(Pasta pasta, Usuario usuario){
         if (!pasta.getUsuarios().contains(usuario)) {
-
-
+            pasta.getUsuarios().add(usuario);
+            usuario.getPastas().add(pasta);
             Pasta _pasta = pastaRepository.save(pasta);
-            pastaRepository.adicionarUsuarioPasta(usuario.getId_usuario(),pasta.getId_pasta());
+            usuarioRepository.save(usuario);
+           // pastaRepository.adicionarUsuarioPasta(usuario.getId_usuario(),pasta.getId_pasta());
 
             System.out.println("Pasta depois de ser salva" + _pasta);
             return ResponseEntity.ok(PastaDto.transformaEmDTO(_pasta));

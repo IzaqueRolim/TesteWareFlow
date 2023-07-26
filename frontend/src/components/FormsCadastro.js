@@ -16,6 +16,7 @@ export const FormsCadastro = (props) => {
     pasta:[],
     roles:null
   });
+  const [msg,setMsg] = useState("");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -47,11 +48,15 @@ export const FormsCadastro = (props) => {
       })
       .then(response => response.json())
       .then(data => {
-        // Aqui você tem acesso aos dados do corpo da resposta em formato JSON
-        console.log(data);
-        localStorage.setItem('idUsuario',data.id_usuario);
-        alert("Cadastrado com sucesso");
-        navigate("/pastas");
+        if(data.id_usuario!=undefined){
+          console.log(data);
+          localStorage.setItem('idUsuario',data.id_usuario);
+          navigate("/pastas");
+        }
+        setMsg("Algo deu errado! Por favor entre em contato com o administrador");
+        const timer = setTimeout(() => {
+          setMsg("")
+        }, 2500); 
       })
     } catch (error) {
       console.log("teve erro",error);
@@ -84,7 +89,7 @@ export const FormsCadastro = (props) => {
       </div>
       <div>
         <span className="p-input-icon-left">
-          <i className="pi pi-shield" />
+          <i className="pi pi-envelope" />
           <InputText
             onChange={(e)=>setEmail(e.target.value)}
             placeholder="Email"
@@ -101,7 +106,7 @@ export const FormsCadastro = (props) => {
           />
         </span>
       </div>
-
+      <span className="respostaLogin">{msg}</span>
       <Button
         label="Cadastrar"
         aria-label="Submit"

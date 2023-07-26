@@ -58,7 +58,7 @@
   transition: all 0.5s;
   padding: 0 1em;
   position: fixed;
-  top: 8vh; /* Posição vertical a partir do topo */ 
+  top: 60px; /* Posição vertical a partir do topo */ 
   right: 70px;
   background-color: aliceblue;
   border: 1px solid #ccc;
@@ -84,4 +84,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.adicionarUsuario{
+  margin-top: 3vh;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+}
+.adicionarUsuario>button{
+  margin-left: 3px;
+  height: 100%;
+  
+}
+
+.respostaLogin{
+  color: rgb(171, 31, 31);
+  font-size: 14px;
+  text-align: center;
 }

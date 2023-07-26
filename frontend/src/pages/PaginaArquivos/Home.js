@@ -9,6 +9,7 @@ import "./style.css";
 
 export const Home = () => {
   const [jsonData, setJsonData] = useState(null);
+  const [file,setFile] = useState();
 
   useEffect(() => {
     postUsuario();
@@ -36,6 +37,37 @@ export const Home = () => {
     }
   }
 
+  async function handleFile(event){
+    setFile(event.target.files[0])
+    console.log(event.target.files[0])
+  }
+  async function handleUpload(e){
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("file",file);
+
+   
+    const url = `http://localhost:8080/arquivo/upload/${localStorage.getItem("id_pasta")}`
+    console.log(url)
+    try {
+    await fetch(url, {
+        method: "POST",
+        body:formData,
+        headers:{
+          'Custom-Header': 'value',
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+      //  setJsonData(data);
+        console.log(data)
+      })
+    } catch (error) {
+      console.log("teve erro",error);
+    }
+
+  }
+
   if (!jsonData) {
     return <div>Carregando...</div>;
   }
@@ -43,7 +75,18 @@ export const Home = () => {
     <>
       <Header usuarios={jsonData.usuarios} titulo={jsonData.nomePasta}/>
       <div className="home">
-        {jsonData.arquivos.length > 0 ? <ListaArquivo arquivos={jsonData.arquivos} /> : <FileUploadDemo />}
+        {jsonData.arquivos.length > 0 ? 
+            <ListaArquivo arquivos={jsonData.arquivos} /> :
+
+            <form className="upload-form" onSubmit={handleUpload} enctype="multipart/form-data">    
+              <label htmlFor="fileInput" className="file-input-label">
+                Escolher arquivo
+                <input type="file" id="fileInput" onChange={handleFile} />
+              </label>
+              <span>Arraste e solte seus arquivos aqui</span>
+              <button>Upload</button>
+            </form>
+          }
 
         <div className="part-2-home">
           {/* <PeopleAcess usuarios={jsonData.usuarios} />

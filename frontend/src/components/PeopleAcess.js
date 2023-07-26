@@ -3,35 +3,38 @@ import React, { useState,useEffect } from "react";
 import { Foto } from "./Foto";
 import { Pessoa } from "./Pessoa";
 import { InputText } from "primereact/inputtext";
-import { Button } from "primereact/button";
-import { alignProperty } from "@mui/material/styles/cssUtils";
 
 export const PeopleAcess = (props) => {
   const [jsonData, setJsonData] = useState(null);
-  const [nomeAdicionar,setNomeAdicionar] = useState("");
+  const [email,setEmail] = useState("");
 
-  const adicionarUsuario = async() =>{
+  async function adicionarUsuario() {
     const data = {
-      idUsuario:localStorage.getItem("idUsuario"),
+      emailUsuario: email,
       idPasta:localStorage.getItem("id_pasta")
     }
-    const url = `http://localhost:8080/pasta/adicionarUsuario")}`;
+    console.log(data)
 
-      try {
-        await fetch(url, {
-          method: "POST",
-          body: data,
-        })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          window.location.href = window.location.href
-        })
-      } catch (error) {
-        console.log("teve erro",error);
-      }
+    try {
+      await fetch("http://localhost:8080/pasta/adicionarUsuario", {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Aqui você tem acesso aos dados do corpo da resposta em formato JSON
+        console.log(data);
+       // window.location.href = window.location.href
+      })
+    } catch (error) {
+      console.log("teve erro",error);
+    }
   }
-  if (!jsonData) {
+   
+  if (!props) {
       return <div>Carregando...</div>;
   }
 
@@ -56,6 +59,14 @@ export const PeopleAcess = (props) => {
               onClick={()=>{}}
               style={{ width: "30%",marginLeft:"10px", paddingLeft:"5px",paddingRight:"5px  "}}></Button>
         </div>
+      </div>
+      <div className="adicionarUsuario">
+        <InputText
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+            />
+        <button onClick={adicionarUsuario}>Adicionar</button>
       </div>
     </div>
   );

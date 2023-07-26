@@ -13,6 +13,7 @@ export const ListaPasta = () => {
   const [nomePasta, setNomePasta] = useState("");
   const [nomeNovaPasta, setNomeNovaPasta] = useState("")
   const [modalCriarPastaIsOpen, setModalCriarPastaIsOpen] = useState(false);
+  const [email,setEmail] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,20 +21,46 @@ export const ListaPasta = () => {
   }, []);
 
 
-  async function postUsuario() {
-    const url = `http://localhost:8080/usuario/${localStorage.getItem("idUsuario")}`
-    console.log(url)
+  async function adicionarUsuario() {
+    const data = {
+      emailUsuario: email,
+      idPasta:localStorage.getItem("id_pasta")
+    }
+    console.log(data)
+
     try {
-    await fetch(url, {
-        method: "GET",
+      await fetch("http://localhost:8080/pasta/adicionarUsuario", {
+        method: "POST",
+        body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then(response => response.json())
       .then(data => {
-        setJsonData(data);
+        // Aqui você tem acesso aos dados do corpo da resposta em formato JSON
+        console.log(data);
+        window.location.href = window.location.href
+      })
+    } catch (error) {
+      console.log("teve erro",error);
+    }
+  }
+
+  async function postUsuario() {
+    const url = `http://localhost:8080/usuario/${localStorage.getItem("idUsuario")}`
+    console.log(url)
+    try {
+    await fetch(url, {
+        method: "GET"
+      })
+      .then(response => response.json())
+      .then(data => {
         console.log(data.pastas)
+        if(data.pastas==undefined){
+          navigate("/");
+        }
+        setJsonData(data);
       })
     } catch (error) {
       console.log("teve erro",error);
