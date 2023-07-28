@@ -1,4 +1,4 @@
-v
+
 ## Sobre o projeto
 
 Um software de armazenamento e compatilhamento de arquivos, desenvolvido em ReactJs(front-end) e Spring boot(back-end).
