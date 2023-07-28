@@ -44,10 +44,14 @@
 
 > - **Gerenciamento de Dependências**: Aprendi como o Maven ou o Gradle são usados para gerenciar as dependências do projeto e garantir que as bibliotecas necessárias estejam disponíveis.
 
+> - **Relacionamento entre tabelas no banco de dados**: Aprendi como fazer relacionantos @OneToOne, @OneToMany e @ManyToMany nas entidades do JPA
+
 
 ## Documentação da API
 
- EndPoints
+
+### EndPoints
+<br>
 
 | Metodo       |URL                |Descricao                          |
 | :----------|:---                 |:---------------------------------- |
@@ -62,8 +66,10 @@
 | PUT        | /pasta/{id}         |Compartilha a pasta com outro usuário |
 | DELETE     | /pasta              |Deleta uma pasta |
 
+<br>
 
-Body
+### Body
+
 
 <details>
   <summary>Login</summary>
@@ -139,12 +145,18 @@ Body
 
 - Entrada
     - ```http
-      GET /api/items/${id}
-      ```
+      {
+        "nomePasta":"Pasta do Izaque(alterada)"
+      }
 - Saida
     - ```http
-      GET /api/items/${id}
-      ```
+      {
+        "id_pasta": "ac0aebf6-5a0a-43d6-bb55-c9ab62b49c93",
+        "nomePasta": "Pasta do Izaque(alterada)",
+        "data_criacao": "2023-07-26",
+        "rota_compartilhamento": "afodldb5",
+        "arquivos": []
+      }
 </details>
 
 <details>
@@ -152,11 +164,50 @@ Body
 
 - Entrada
     - ```http
-      GET /api/items/${id}
+      {
+        "emailUsuario":"risoa@gmail.com",
+        "idPasta":"d4df0ce7-79d1-4247-9721-54dfac4bc84d"
+      }
       ```
 - Saida
     - ```http
-      GET /api/items/${id}
-      ```
+      {
+        "id": "d4df0ce7-79d1-4247-9721-54dfac4bc84d",
+        "nomePasta": "Pasta do Izaque",
+        "data_criacao": "2023-07-26",
+        "rota_compartilhamento": "24aijk5m",
+        "usuarios": [
+          {
+            "id_usuario": "7034c76c-0db2-4bae-8a44-9caa42b2cf54",
+            "nomeUsuario": "Risonaldo",
+            "email": "riso@gmail.com",
+            "senha": "12345",
+            "pastas": [
+              {
+                "id_pasta": "d4df0ce7-79d1-4247-9721-54dfac4bc84d",
+                "nomePasta": "Pasta do Izaque",
+                "data_criacao": "2023-07-26",
+                "rota_compartilhamento": "24aijk5m",
+                "arquivos": []
+              }
+            ],
+          },
+          {
+            "id_usuario": "c5bc0f75-806c-4f63-8221-243c3d99d6a0",
+            "nomeUsuario": "Risonaldo",
+            "email": "risoa@gmail.com",
+            "senha": "12345",
+            "pastas": [
+              {
+                "id_pasta": "d4df0ce7-79d1-4247-9721-54dfac4bc84d",
+                "nomePasta": "Pasta do Izaque",
+                "data_criacao": "2023-07-26",
+                "rota_compartilhamento": "24aijk5m",
+                "arquivos": []
+              }
+            ]} 
+	      ],
+	      "arquivos": []
+      }
 </details>
 
