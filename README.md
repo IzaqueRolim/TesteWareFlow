@@ -222,8 +222,8 @@
 <summary>Upload de arquivos</summary>
 
 - Entrada
-     Selecione o arquivo no insomnia, dessa forma:
-     <img src="https://github.com/IzaqueRolim/TesteWareFlow/blob/main/Screenshots/15.png?raw=true" width="300">
+     Selecione o arquivo no insomnia, dessa forma:<br/>
+     <img src="https://github.com/IzaqueRolim/TesteWareFlow/blob/main/Screenshots/15.png?raw=true" width="400">
 - Saida
      ```http
       {
