@@ -29,8 +29,6 @@
 <img src="https://github.com/IzaqueRolim/TesteWareFlow/blob/main/Screenshots/12.jpeg?raw=true" width="300">
 <img src="https://github.com/IzaqueRolim/TesteWareFlow/blob/main/Screenshots/13.jpeg?raw=true" width="300">
 <img src="https://github.com/IzaqueRolim/TesteWareFlow/blob/main/Screenshots/14.jpeg?raw=true" width="300">
-<img src="https://github.com/IzaqueRolim/TesteWareFlow/blob/main/Screenshots/15.png?raw=true" width="300">
-
 
 ##  Meus Aprendizados
 
@@ -220,3 +218,19 @@
       }
 </details>
 
+<details>
+<summary>Upload de arquivos</summary>
+
+- Entrada
+     ```http
+     Selecione o arquivo no insomnia, dessa forma:
+    <img src="https://github.com/IzaqueRolim/TesteWareFlow/blob/main/Screenshots/15.png?raw=true" width="300">
+- Saida
+     ```http
+      {
+        "id_arquivo": "982e731a-59a4-41a4-9021-1233a5d11d72",
+        "nomeArquivo": "arquivo1",
+        "url":"localhost:8080/arquivo1"
+      }
+      
+</details>
