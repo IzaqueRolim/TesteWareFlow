@@ -71,18 +71,27 @@
 ### Body
 
 
+
 <details>
   <summary>Login</summary>
 
   - Entrada
       - ```http
-        GET /api/items/${id}
-        ```
+        {
+            "emailUsuario":"usuario1@gmail.com",
+            "senha":"1234"
+        }
   - Saida
       - ```http
-        GET /api/items/${id}
-        ```
+        {
+            "id_usuario": "982e731a-59a4-41a4-9021-1233a5d11d72",
+            "nomeUsuario": "Usuario 1",
+            "email": "usuario1@gmail.com",
+            "senha": "7110eda4d09e062aa5e4a390b0a572ac0d2c0220",
+            "pastas": []
+        }
 </details>
+
 
 
 <details>
